@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3011B71A24E48B2100595869 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B71924E48B2100595869 /* Images.swift */; };
-		3011B71C24E48BB000595869 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B71B24E48BB000595869 /* Genres.swift */; };
+		3011B71A24E48B2100595869 /* ImageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B71924E48B2100595869 /* ImageConfiguration.swift */; };
+		3011B71C24E48BB000595869 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B71B24E48BB000595869 /* Genre.swift */; };
+		3011B71E24E48CCE00595869 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B71D24E48CCE00595869 /* Movie.swift */; };
 		301B362124E43048007C2411 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301B362024E43048007C2411 /* AppDelegate.swift */; };
 		301B362A24E43049007C2411 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 301B362924E43049007C2411 /* Assets.xcassets */; };
 		301B362D24E43049007C2411 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301B362B24E43049007C2411 /* LaunchScreen.storyboard */; };
@@ -54,8 +55,9 @@
 
 /* Begin PBXFileReference section */
 		1AEB9DDAB844726050B51836 /* Pods-tmdb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tmdb.debug.xcconfig"; path = "Target Support Files/Pods-tmdb/Pods-tmdb.debug.xcconfig"; sourceTree = "<group>"; };
-		3011B71924E48B2100595869 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
-		3011B71B24E48BB000595869 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
+		3011B71924E48B2100595869 /* ImageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConfiguration.swift; sourceTree = "<group>"; };
+		3011B71B24E48BB000595869 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		3011B71D24E48CCE00595869 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		301B361D24E43048007C2411 /* tmdb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tmdb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		301B362024E43048007C2411 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		301B362924E43049007C2411 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,8 +126,9 @@
 		3011B71824E48A2E00595869 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3011B71924E48B2100595869 /* Images.swift */,
-				3011B71B24E48BB000595869 /* Genres.swift */,
+				3011B71924E48B2100595869 /* ImageConfiguration.swift */,
+				3011B71B24E48BB000595869 /* Genre.swift */,
+				3011B71D24E48CCE00595869 /* Movie.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -542,16 +545,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3011B71E24E48CCE00595869 /* Movie.swift in Sources */,
 				301B367124E43D39007C2411 /* ViewController.swift in Sources */,
 				30E3981B24E476D000AD6770 /* CustomError.swift in Sources */,
 				301B366B24E43BE1007C2411 /* UIViewController+Rx.swift in Sources */,
-				3011B71A24E48B2100595869 /* Images.swift in Sources */,
+				3011B71A24E48B2100595869 /* ImageConfiguration.swift in Sources */,
 				301B366424E43728007C2411 /* CustomTypes.swift in Sources */,
 				301B367424E43D6E007C2411 /* ViewModel.swift in Sources */,
 				30E3981924E468D500AD6770 /* TMDB.swift in Sources */,
 				301B366724E438B2007C2411 /* SharedLocator.swift in Sources */,
 				301B366124E435FC007C2411 /* BaseCoordinator.swift in Sources */,
-				3011B71C24E48BB000595869 /* Genres.swift in Sources */,
+				3011B71C24E48BB000595869 /* Genre.swift in Sources */,
 				301B366024E435FC007C2411 /* BaseViewModel.swift in Sources */,
 				301B365B24E43300007C2411 /* BaseViewController.swift in Sources */,
 				301B367824E45BDE007C2411 /* APIRequest.swift in Sources */,

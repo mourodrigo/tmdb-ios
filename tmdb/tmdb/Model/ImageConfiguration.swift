@@ -3,7 +3,7 @@
 
 import Foundation
 
-struct Images: Codable {
+struct ImageConfiguration: Codable {
     let baseURL: String
     let secureBaseURL: String
     let backdropSizes, logoSizes, posterSizes, profileSizes: [String]

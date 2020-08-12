@@ -15,9 +15,3 @@ struct Genres: BiCodable { //For API Response
     case values = "genres"
   }
 }
-
-enum APIResponse {
-    case success
-    case loading
-    case error(error: Error)
-}
