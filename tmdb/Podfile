@@ -1,0 +1,41 @@
+platform :ios, '11.0'
+use_frameworks!
+#inhibit_all_warnings! //TODO
+
+supports_swift_versions '>= 3.0', '<= 5.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+# Commom Pods
+def common_pods
+  # Rx
+  pod 'RxSwift', '5.1.0'
+  pod 'RxCocoa', '5.1.0'
+  pod 'RxRelay', '5.1.0'
+  pod 'RxGesture', '3.0.0'
+
+end
+
+# Pods for the app
+target 'tmdb' do
+  common_pods
+
+  #Lint
+  #pod 'SwiftLint', '0.34.0' //TODO
+
+  #R
+
+  pod 'R.swift', '5.0.3'
+  pod 'R.swift.Library', '5.0.1'
+
+  end
+
+# Pods for Tests
+target 'tmdbTests' do
+  common_pods
+end
+
+# Pods for UI Tests
+target 'tmdbUITests' do
+  common_pods
+end
