@@ -3,7 +3,7 @@
 
 import Foundation
 
-extension Data {
+public extension Data {
     func mapObject<T: Codable>(_ resultType: T.Type) -> T {
         do {
             return try JSONDecoder().decode(T.self, from: self)
