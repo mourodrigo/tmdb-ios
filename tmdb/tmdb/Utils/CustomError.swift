@@ -16,9 +16,12 @@ enum CustomError: ErrorProtocol {
     case serverError(details: String?)
     case unexpectedServerResponse(details: String?)
     case error(message: String)
+    case mappingResponse
 
     var description: String {
         switch self {
+        case .mappingResponse:
+        return "Unexpected error mapping server response"
         case .noConnection:
             return "No Connection"
         case .serverError(let details):

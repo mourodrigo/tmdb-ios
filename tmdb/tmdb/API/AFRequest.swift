@@ -4,7 +4,7 @@
 import Foundation
 import Alamofire
 
-class AFRequest {
+class AFRequest: APIRequest {
 
     func get(url: URL, onSuccess: @escaping APIResponseSuccess, onError: @escaping ErrorClosure) {
         print("Request to \(url)")
