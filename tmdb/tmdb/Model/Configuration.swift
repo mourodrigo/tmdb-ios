@@ -3,6 +3,15 @@
 
 import Foundation
 
+struct Configuration: BiCodable {
+    let images: ImageConfiguration
+
+    enum CodingKeys: String, CodingKey {
+      case images = "images"
+    }
+
+}
+
 struct ImageConfiguration: Codable {
     let baseURL: String
     let secureBaseURL: String
@@ -18,4 +27,5 @@ struct ImageConfiguration: Codable {
         case profileSizes = "profile_sizes"
         case stillSizes = "still_sizes"
     }
+    
 }

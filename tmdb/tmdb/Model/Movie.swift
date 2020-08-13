@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Movie: Codable {
+struct Movie: BiCodable {
     let popularity: Double
     let id: Int
     let video: Bool

@@ -9,9 +9,9 @@ struct Genre: BiCodable {
 }
 
 struct Genres: BiCodable { //For API Response
-  let values: [Genre]
+  let all: [Genre]
 
   enum CodingKeys: String, CodingKey {
-    case values = "genres"
+    case all = "genres"
   }
 }
