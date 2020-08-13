@@ -44,7 +44,10 @@ extension AppDelegate {
         window = rootWindow
 
         let appCoordinator = AppCoordinator(rootCoordinator: rootCoordinator)
+
         SharedLocator.shared.register(AppCoordinatorProtocol.self, instance: appCoordinator)
+        SharedLocator.shared.register(APIRequest.self, instance: MOCKED_APIRequests_Success())
+
     }
 }
 

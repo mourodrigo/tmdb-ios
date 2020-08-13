@@ -66,26 +66,26 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol {
         viewModel.isLoading.drive(
             onNext: { [weak self] (value) in
                 if value {
-//                    self?.showLoading() //todo
+                    self?.showLoading()
                 } else {
-//                    self?.hideLoading() //todo
+                    self?.hideLoading()
                 }
             }
         ).disposed(by: _disposeBag)
     }
-// //todo
-//    //************************************************
-//    // MARK: - Loading/Activity
-//    //************************************************
-//
-//    func showLoading(text: String? = nil) {
-//        let parent = self.navigationController ?? self
-//        LoadingView.show(on: parent.view)
-//    }
-//
-//    func hideLoading() {
-//        LoadingView.hide()
-//    }
+
+    //************************************************
+    // MARK: - Loading/Activity
+    //************************************************
+
+    func showLoading(text: String? = nil) {
+        let parent = self.navigationController ?? self
+        LoadingView.show(on: parent.view)
+    }
+
+    func hideLoading() {
+        LoadingView.hide()
+    }
 
 }
 
