@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3011B71A24E48B2100595869 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B71924E48B2100595869 /* Configuration.swift */; };
+		3011B71C24E48BB000595869 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B71B24E48BB000595869 /* Genre.swift */; };
+		3011B71E24E48CCE00595869 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B71D24E48CCE00595869 /* Movie.swift */; };
+		3011B72024E48E8D00595869 /* DiscoverMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B71F24E48E8D00595869 /* DiscoverMovies.swift */; };
+		3011B72224E56B1700595869 /* AFRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B72124E56B1700595869 /* AFRequest.swift */; };
+		3011B72524E56BE100595869 /* MOCKED_APIRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B72424E56BE100595869 /* MOCKED_APIRequests.swift */; };
+		3011B72724E5711F00595869 /* MOCKED_APIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B72624E5711F00595869 /* MOCKED_APIResponses.swift */; };
 		301B362124E43048007C2411 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301B362024E43048007C2411 /* AppDelegate.swift */; };
 		301B362A24E43049007C2411 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 301B362924E43049007C2411 /* Assets.xcassets */; };
 		301B362D24E43049007C2411 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301B362B24E43049007C2411 /* LaunchScreen.storyboard */; };
@@ -24,6 +31,10 @@
 		301B367224E43D39007C2411 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 301B367024E43D39007C2411 /* ViewController.xib */; };
 		301B367424E43D6E007C2411 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301B367324E43D6E007C2411 /* ViewModel.swift */; };
 		301B367624E43D8C007C2411 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301B367524E43D8C007C2411 /* Coordinator.swift */; };
+		301B367824E45BDE007C2411 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301B367724E45BDE007C2411 /* APIRequest.swift */; };
+		30E3981924E468D500AD6770 /* TMDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E3981824E468D500AD6770 /* TMDB.swift */; };
+		30E3981B24E476D000AD6770 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E3981A24E476D000AD6770 /* CustomError.swift */; };
+		30E3981D24E4868700AD6770 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E3981C24E4868700AD6770 /* Data+.swift */; };
 		9FF1EDF7B162A7DB3374731F /* Pods_tmdbTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D4F17892519331829819A0 /* Pods_tmdbTests.framework */; };
 		AB1687A6F2BAA40DFE8603A4 /* Pods_tmdbUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD4511BFA126D007E4DC7EF /* Pods_tmdbUITests.framework */; };
 		D840EFEA4EEC8B91A72D426B /* Pods_tmdb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F1545B27709CC261A696B9 /* Pods_tmdb.framework */; };
@@ -48,6 +59,13 @@
 
 /* Begin PBXFileReference section */
 		1AEB9DDAB844726050B51836 /* Pods-tmdb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tmdb.debug.xcconfig"; path = "Target Support Files/Pods-tmdb/Pods-tmdb.debug.xcconfig"; sourceTree = "<group>"; };
+		3011B71924E48B2100595869 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		3011B71B24E48BB000595869 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		3011B71D24E48CCE00595869 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		3011B71F24E48E8D00595869 /* DiscoverMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverMovies.swift; sourceTree = "<group>"; };
+		3011B72124E56B1700595869 /* AFRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFRequest.swift; sourceTree = "<group>"; };
+		3011B72424E56BE100595869 /* MOCKED_APIRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOCKED_APIRequests.swift; sourceTree = "<group>"; };
+		3011B72624E5711F00595869 /* MOCKED_APIResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOCKED_APIResponses.swift; sourceTree = "<group>"; };
 		301B361D24E43048007C2411 /* tmdb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tmdb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		301B362024E43048007C2411 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		301B362924E43049007C2411 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +89,10 @@
 		301B367024E43D39007C2411 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		301B367324E43D6E007C2411 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		301B367524E43D8C007C2411 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		301B367724E45BDE007C2411 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		30E3981824E468D500AD6770 /* TMDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDB.swift; sourceTree = "<group>"; };
+		30E3981A24E476D000AD6770 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		30E3981C24E4868700AD6770 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
 		34F1545B27709CC261A696B9 /* Pods_tmdb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tmdb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B5371B3CA3447BF76076216 /* Pods-tmdbTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tmdbTests.release.xcconfig"; path = "Target Support Files/Pods-tmdbTests/Pods-tmdbTests.release.xcconfig"; sourceTree = "<group>"; };
 		8FF062C0334B3FA7B1137BC2 /* Pods-tmdbUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tmdbUITests.debug.xcconfig"; path = "Target Support Files/Pods-tmdbUITests/Pods-tmdbUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +131,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3011B71824E48A2E00595869 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3011B71924E48B2100595869 /* Configuration.swift */,
+				3011B71B24E48BB000595869 /* Genre.swift */,
+				3011B71D24E48CCE00595869 /* Movie.swift */,
+				3011B71F24E48E8D00595869 /* DiscoverMovies.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3011B72324E56BC600595869 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				3011B72424E56BE100595869 /* MOCKED_APIRequests.swift */,
+				3011B72624E5711F00595869 /* MOCKED_APIResponses.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		301B361424E43048007C2411 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +176,7 @@
 		301B361F24E43048007C2411 /* tmdb */ = {
 			isa = PBXGroup;
 			children = (
+				3011B71824E48A2E00595869 /* Model */,
 				301B366224E4371A007C2411 /* Utils */,
 				301B365324E4308B007C2411 /* API */,
 				301B365224E43085007C2411 /* Application */,
@@ -193,6 +236,10 @@
 		301B365324E4308B007C2411 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				3011B72324E56BC600595869 /* Mocks */,
+				301B367724E45BDE007C2411 /* APIRequest.swift */,
+				3011B72124E56B1700595869 /* AFRequest.swift */,
+				30E3981824E468D500AD6770 /* TMDB.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -212,6 +259,7 @@
 			children = (
 				301B366924E43BD9007C2411 /* Extensions */,
 				301B366324E43728007C2411 /* CustomTypes.swift */,
+				30E3981A24E476D000AD6770 /* CustomError.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -219,6 +267,7 @@
 		301B366924E43BD9007C2411 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				30E3981C24E4868700AD6770 /* Data+.swift */,
 				301B366C24E43C5B007C2411 /* String+.swift */,
 				301B366A24E43BE1007C2411 /* UIViewController+Rx.swift */,
 			);
@@ -516,16 +565,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3011B71E24E48CCE00595869 /* Movie.swift in Sources */,
+				3011B72524E56BE100595869 /* MOCKED_APIRequests.swift in Sources */,
 				301B367124E43D39007C2411 /* ViewController.swift in Sources */,
+				30E3981B24E476D000AD6770 /* CustomError.swift in Sources */,
+				3011B72724E5711F00595869 /* MOCKED_APIResponses.swift in Sources */,
 				301B366B24E43BE1007C2411 /* UIViewController+Rx.swift in Sources */,
+				3011B71A24E48B2100595869 /* Configuration.swift in Sources */,
 				301B366424E43728007C2411 /* CustomTypes.swift in Sources */,
 				301B367424E43D6E007C2411 /* ViewModel.swift in Sources */,
+				30E3981924E468D500AD6770 /* TMDB.swift in Sources */,
 				301B366724E438B2007C2411 /* SharedLocator.swift in Sources */,
 				301B366124E435FC007C2411 /* BaseCoordinator.swift in Sources */,
+				3011B71C24E48BB000595869 /* Genre.swift in Sources */,
 				301B366024E435FC007C2411 /* BaseViewModel.swift in Sources */,
 				301B365B24E43300007C2411 /* BaseViewController.swift in Sources */,
+				301B367824E45BDE007C2411 /* APIRequest.swift in Sources */,
+				3011B72224E56B1700595869 /* AFRequest.swift in Sources */,
+				30E3981D24E4868700AD6770 /* Data+.swift in Sources */,
 				301B367624E43D8C007C2411 /* Coordinator.swift in Sources */,
 				301B366D24E43C5B007C2411 /* String+.swift in Sources */,
+				3011B72024E48E8D00595869 /* DiscoverMovies.swift in Sources */,
 				301B366824E438B2007C2411 /* AppCoordinator.swift in Sources */,
 				301B362124E43048007C2411 /* AppDelegate.swift in Sources */,
 			);
