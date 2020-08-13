@@ -12,7 +12,7 @@ class MOCKED_APIRequests_Success: APIRequest {
         if url == TMDB.resourceURL.configuration.URLValue {
             onSuccess(MOCKED_APIResponses.MOCKED_ConfigurationResponse.data(using: .utf8)!)
             return
-        } else if url == TMDB.resourceURL.discoverMovies.URLValue {
+        } else if url == TMDB.resourceURL.discoverMovies(genreId: 28).URLValue {
             onSuccess(MOCKED_APIResponses.MOCKED_DiscoverMovies_pg0.data(using: .utf8)!)
             return
         } else if url == TMDB.resourceURL.genres.URLValue {

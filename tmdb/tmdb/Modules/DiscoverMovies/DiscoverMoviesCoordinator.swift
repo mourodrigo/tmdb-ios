@@ -27,7 +27,12 @@ class DiscoverMoviesCoordinator: BaseCoordinator, DiscoverMoviesCoordinatorProto
     override init() {
         super.init()
 
-        _viewModel = DiscoverMoviesViewModel(coordinator: self)
+        let api = AFRequest()
+
+        _viewModel = DiscoverMoviesViewModel(coordinator: self,
+                                             discoverRepository: DiscoverMoviesRepository(api: api),
+                                             genreRepository: GenreRepository(api: api))
+        
         _viewController = DiscoverMoviesViewController(viewModel: _viewModel)
         _navigationController = UINavigationController(rootViewController: _viewController)
     }

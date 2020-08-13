@@ -10,7 +10,7 @@ class TMDB {
     enum resourceURL {
         case configuration
         case genres
-        case discoverMovies
+        case discoverMovies(genreId: Int)
 
         private var stringValue: String {
             var value = endpoint
@@ -20,9 +20,9 @@ class TMDB {
                 value = value.appending("configuration?")
             case .genres:
                 value = value.appending("genre/movie/list?")
-            case .discoverMovies:
+            case .discoverMovies(let genreId):
                 value = value.appending("discover/movie?")
-                value = value.appending("with_genres=28")
+                value = value.appending("with_genres=\(genreId)")
             }
 
             value = value.appending("&api_key=\(apiKey)")
@@ -39,7 +39,7 @@ class TMDB {
         }
 
         func URLValue(page: Int) -> URL {
-            let pagedString = self.stringValue + "(&page\(page)"
+            let pagedString = self.stringValue + "&page\(page)"
             guard let url = URL(string: pagedString) else {
                 fatalError("URLs MUST be valid at \(String(describing: self))")
             }

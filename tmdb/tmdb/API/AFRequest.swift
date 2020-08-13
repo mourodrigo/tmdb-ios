@@ -10,7 +10,6 @@ class AFRequest: APIRequest {
         print("Request to \(url)")
 
         AF.request(url).responseData { (response) in
-            DispatchQueue.global().async {
                 if let error = response.error {
                     onError(error)
                     return
@@ -20,7 +19,6 @@ class AFRequest: APIRequest {
                     return
                 }
                 onSuccess(data)
-            }
         }
     }
 }
