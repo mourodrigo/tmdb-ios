@@ -11,6 +11,9 @@
 		3011B71C24E48BB000595869 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B71B24E48BB000595869 /* Genre.swift */; };
 		3011B71E24E48CCE00595869 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B71D24E48CCE00595869 /* Movie.swift */; };
 		3011B72024E48E8D00595869 /* DiscoverMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B71F24E48E8D00595869 /* DiscoverMovies.swift */; };
+		3011B72224E56B1700595869 /* AFRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B72124E56B1700595869 /* AFRequest.swift */; };
+		3011B72524E56BE100595869 /* MOCKED_APIRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B72424E56BE100595869 /* MOCKED_APIRequests.swift */; };
+		3011B72724E5711F00595869 /* MOCKED_APIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B72624E5711F00595869 /* MOCKED_APIResponses.swift */; };
 		301B362124E43048007C2411 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301B362024E43048007C2411 /* AppDelegate.swift */; };
 		301B362A24E43049007C2411 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 301B362924E43049007C2411 /* Assets.xcassets */; };
 		301B362D24E43049007C2411 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301B362B24E43049007C2411 /* LaunchScreen.storyboard */; };
@@ -60,6 +63,9 @@
 		3011B71B24E48BB000595869 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		3011B71D24E48CCE00595869 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		3011B71F24E48E8D00595869 /* DiscoverMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverMovies.swift; sourceTree = "<group>"; };
+		3011B72124E56B1700595869 /* AFRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFRequest.swift; sourceTree = "<group>"; };
+		3011B72424E56BE100595869 /* MOCKED_APIRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOCKED_APIRequests.swift; sourceTree = "<group>"; };
+		3011B72624E5711F00595869 /* MOCKED_APIResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOCKED_APIResponses.swift; sourceTree = "<group>"; };
 		301B361D24E43048007C2411 /* tmdb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tmdb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		301B362024E43048007C2411 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		301B362924E43049007C2411 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -134,6 +140,15 @@
 				3011B71F24E48E8D00595869 /* DiscoverMovies.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3011B72324E56BC600595869 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				3011B72424E56BE100595869 /* MOCKED_APIRequests.swift */,
+				3011B72624E5711F00595869 /* MOCKED_APIResponses.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		301B361424E43048007C2411 = {
@@ -221,7 +236,9 @@
 		301B365324E4308B007C2411 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				3011B72324E56BC600595869 /* Mocks */,
 				301B367724E45BDE007C2411 /* APIRequest.swift */,
+				3011B72124E56B1700595869 /* AFRequest.swift */,
 				30E3981824E468D500AD6770 /* TMDB.swift */,
 			);
 			path = API;
@@ -549,8 +566,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3011B71E24E48CCE00595869 /* Movie.swift in Sources */,
+				3011B72524E56BE100595869 /* MOCKED_APIRequests.swift in Sources */,
 				301B367124E43D39007C2411 /* ViewController.swift in Sources */,
 				30E3981B24E476D000AD6770 /* CustomError.swift in Sources */,
+				3011B72724E5711F00595869 /* MOCKED_APIResponses.swift in Sources */,
 				301B366B24E43BE1007C2411 /* UIViewController+Rx.swift in Sources */,
 				3011B71A24E48B2100595869 /* Configuration.swift in Sources */,
 				301B366424E43728007C2411 /* CustomTypes.swift in Sources */,
@@ -562,6 +581,7 @@
 				301B366024E435FC007C2411 /* BaseViewModel.swift in Sources */,
 				301B365B24E43300007C2411 /* BaseViewController.swift in Sources */,
 				301B367824E45BDE007C2411 /* APIRequest.swift in Sources */,
+				3011B72224E56B1700595869 /* AFRequest.swift in Sources */,
 				30E3981D24E4868700AD6770 /* Data+.swift in Sources */,
 				301B367624E43D8C007C2411 /* Coordinator.swift in Sources */,
 				301B366D24E43C5B007C2411 /* String+.swift in Sources */,

@@ -2,8 +2,8 @@
 //  tmdb
 
 import Foundation
-import Alamofire
 
+//for encodable objects
 protocol BiCodable: (Decodable & Encodable) {}
 
 protocol APIRequest {
@@ -11,24 +11,3 @@ protocol APIRequest {
 }
 
 typealias APIResponseSuccess = (_ json: Data) -> Void
-
-class AFRequest {
-
-    func get(url: URL, onSuccess: @escaping APIResponseSuccess, onError: @escaping ErrorClosure) {
-        print("Request to \(url)")
-        
-        AF.request(url).responseData { (response) in
-            DispatchQueue.global().async {
-                if let error = response.error {
-                    onError(error)
-                    return
-                }
-                guard let data = response.value else {
-                    onError(CustomError.serverError(details: "Empty Response for \(url)"))
-                    return
-                }
-                onSuccess(data)
-            }
-        }
-    }
-}
