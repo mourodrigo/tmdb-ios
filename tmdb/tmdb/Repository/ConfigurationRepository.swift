@@ -5,9 +5,22 @@ import Foundation
 import RxSwift
 
 enum ConfigurationRepositoryStatus {
- case success(configuration: Configuration)
- case loading
- case error(error: Error)
+    case success(configuration: Configuration)
+    case loading
+    case error(error: Error)
+
+    static func == (lhs: ConfigurationRepositoryStatus, rhs: ConfigurationRepositoryStatus) -> Bool {
+        switch (lhs, rhs) {
+        case let (.success(configuration: aaa),   .success(configuration: bbb)):
+            return aaa.images.baseURL == bbb.images.baseURL //more checking can be added here
+        case (.loading, .loading):
+            return true
+        case let (.error(error: errorA), .error(error: errorB)):
+            return errorA.localizedDescription == errorB.localizedDescription
+        default:
+            return false
+        }
+    }
 }
 
 

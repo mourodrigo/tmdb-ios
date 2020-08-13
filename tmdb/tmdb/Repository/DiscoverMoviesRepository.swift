@@ -5,9 +5,23 @@ import Foundation
 import RxSwift
 
 enum DisconverMoviesRepositoryStatus {
- case success(movies: [Movie])
- case loading
- case error(error: Error)
+    case success(movies: [Movie])
+    case loading
+    case error(error: Error)
+
+    static func == (lhs: DisconverMoviesRepositoryStatus, rhs: DisconverMoviesRepositoryStatus) -> Bool {
+        switch (lhs, rhs) {
+        case let (.success(movies: aaa),   .success(movies: bbb)):
+             //more checking can be added here like a array compare of all movies
+            return aaa.count == bbb.count && aaa.first?.id == bbb.first?.id
+        case (.loading, .loading):
+            return true
+        case let (.error(error: errorA), .error(error: errorB)):
+            return errorA.localizedDescription == errorB.localizedDescription
+        default:
+            return false
+        }
+    }
 }
 
 

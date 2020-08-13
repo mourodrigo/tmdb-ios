@@ -4,12 +4,28 @@
 import Foundation
 import RxSwift
 
-enum GenreRepositoryStatus {
- case success(genres: [Genre])
- case loading
- case error(error: Error)
-}
+enum GenreRepositoryStatus: Equatable {
 
+    case success(genres: [Genre])
+     case loading
+     case error(error: Error)
+
+    static func == (lhs: GenreRepositoryStatus, rhs: GenreRepositoryStatus) -> Bool {
+        switch (lhs, rhs) {
+        case let (.success(genres: aaa),   .success(genres: bbb)):
+             //more checking can be added here
+            return aaa.count == bbb.count && aaa.first?.id == bbb.first?.id
+        case (.loading, .loading):
+            return true
+        case let (.error(error: errorA), .error(error: errorB)):
+            return errorA.localizedDescription == errorB.localizedDescription
+        default:
+            return false
+        }
+    }
+
+
+}
 
 protocol GenreRepositoryProtocol {
     var state: Observable<GenreRepositoryStatus> { get }
@@ -31,7 +47,6 @@ class GenreRepository: GenreRepositoryProtocol {
 
     init(api: APIRequest) {
         _api = api
-        fetch()
     }
 
     func fetch() {
