@@ -15,7 +15,8 @@ typealias APIResponseSuccess = (_ json: Data) -> Void
 class AFRequest {
 
     func get(url: URL, onSuccess: @escaping APIResponseSuccess, onError: @escaping ErrorClosure) {
-
+        print("Request to \(url)")
+        
         AF.request(url).responseData { (response) in
             DispatchQueue.global().async {
                 if let error = response.error {
