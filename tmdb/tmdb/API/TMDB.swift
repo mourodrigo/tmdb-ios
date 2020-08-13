@@ -12,7 +12,7 @@ class TMDB {
         case genres
         case discoverMovies
 
-        var URLValue: URL {
+        private var stringValue: String {
             var value = endpoint
 
             switch self {
@@ -28,7 +28,19 @@ class TMDB {
             value = value.appending("&api_key=\(apiKey)")
             value = value.appending("&language=pt-BR")
 
-            guard let url = URL(string: value) else {
+            return value
+        }
+
+        var URLValue: URL {
+            guard let url = URL(string: self.stringValue) else {
+                fatalError("URLs MUST be valid at \(String(describing: self))")
+            }
+            return url
+        }
+
+        func URLValue(page: Int) -> URL {
+            let pagedString = self.stringValue + "(&page\(page)"
+            guard let url = URL(string: pagedString) else {
                 fatalError("URLs MUST be valid at \(String(describing: self))")
             }
             return url
