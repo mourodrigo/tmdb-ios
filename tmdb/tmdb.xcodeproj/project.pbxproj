@@ -17,6 +17,9 @@
 		3011B72A24E57A5000595869 /* GenreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B72924E57A5000595869 /* GenreRepository.swift */; };
 		3011B72C24E57FD100595869 /* ConfigurationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B72B24E57FD100595869 /* ConfigurationRepository.swift */; };
 		3011B72E24E5808C00595869 /* DiscoverMoviesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B72D24E5808C00595869 /* DiscoverMoviesRepository.swift */; };
+		3011B73224E585C500595869 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B73124E585C500595869 /* NibView.swift */; };
+		3011B73624E586A300595869 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011B73424E586A300595869 /* LoadingView.swift */; };
+		3011B73724E586A300595869 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3011B73524E586A300595869 /* LoadingView.xib */; };
 		301B362124E43048007C2411 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301B362024E43048007C2411 /* AppDelegate.swift */; };
 		301B362A24E43049007C2411 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 301B362924E43049007C2411 /* Assets.xcassets */; };
 		301B362D24E43049007C2411 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301B362B24E43049007C2411 /* LaunchScreen.storyboard */; };
@@ -72,6 +75,9 @@
 		3011B72924E57A5000595869 /* GenreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreRepository.swift; sourceTree = "<group>"; };
 		3011B72B24E57FD100595869 /* ConfigurationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationRepository.swift; sourceTree = "<group>"; };
 		3011B72D24E5808C00595869 /* DiscoverMoviesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverMoviesRepository.swift; sourceTree = "<group>"; };
+		3011B73124E585C500595869 /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
+		3011B73424E586A300595869 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		3011B73524E586A300595869 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		301B361D24E43048007C2411 /* tmdb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tmdb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		301B362024E43048007C2411 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		301B362924E43049007C2411 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -165,6 +171,23 @@
 				3011B72D24E5808C00595869 /* DiscoverMoviesRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		3011B73024E585B300595869 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3011B73124E585C500595869 /* NibView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3011B73324E5869A00595869 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				3011B73424E586A300595869 /* LoadingView.swift */,
+				3011B73524E586A300595869 /* LoadingView.xib */,
+			);
+			path = LoadingView;
 			sourceTree = "<group>";
 		};
 		301B361424E43048007C2411 = {
@@ -274,6 +297,8 @@
 		301B366224E4371A007C2411 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3011B73324E5869A00595869 /* LoadingView */,
+				3011B73024E585B300595869 /* Common */,
 				301B366924E43BD9007C2411 /* Extensions */,
 				301B366324E43728007C2411 /* CustomTypes.swift */,
 				30E3981A24E476D000AD6770 /* CustomError.swift */,
@@ -436,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				301B362D24E43049007C2411 /* LaunchScreen.storyboard in Resources */,
+				3011B73724E586A300595869 /* LoadingView.xib in Resources */,
 				301B367224E43D39007C2411 /* ViewController.xib in Resources */,
 				301B362A24E43049007C2411 /* Assets.xcassets in Resources */,
 			);
@@ -587,6 +613,7 @@
 				301B367124E43D39007C2411 /* ViewController.swift in Sources */,
 				30E3981B24E476D000AD6770 /* CustomError.swift in Sources */,
 				3011B72724E5711F00595869 /* MOCKED_APIResponses.swift in Sources */,
+				3011B73624E586A300595869 /* LoadingView.swift in Sources */,
 				301B366B24E43BE1007C2411 /* UIViewController+Rx.swift in Sources */,
 				3011B71A24E48B2100595869 /* Configuration.swift in Sources */,
 				301B366424E43728007C2411 /* CustomTypes.swift in Sources */,
@@ -605,6 +632,7 @@
 				30E3981D24E4868700AD6770 /* Data+.swift in Sources */,
 				301B367624E43D8C007C2411 /* Coordinator.swift in Sources */,
 				301B366D24E43C5B007C2411 /* String+.swift in Sources */,
+				3011B73224E585C500595869 /* NibView.swift in Sources */,
 				3011B72024E48E8D00595869 /* DiscoverMovies.swift in Sources */,
 				301B366824E438B2007C2411 /* AppCoordinator.swift in Sources */,
 				301B362124E43048007C2411 /* AppDelegate.swift in Sources */,
