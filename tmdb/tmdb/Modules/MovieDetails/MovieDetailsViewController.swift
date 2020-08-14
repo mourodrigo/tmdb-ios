@@ -11,6 +11,9 @@ class MovieDetailsViewController: BaseViewController {
     // MARK: - @IBOutlets
     //************************************************
 
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
     //************************************************
     // MARK: - Private Properties
     //************************************************
@@ -43,6 +46,12 @@ class MovieDetailsViewController: BaseViewController {
 
     private func setupOnLoad() {
 
+        titleLabel.text = _viewModel.title
+        overviewLabel.text = _viewModel.overview
+
+        _viewModel.posterImage.bind { [weak self] (image) in
+            self?.imageView.image = image
+        }.disposed(by: _disposeBag)
     }
 
 }
