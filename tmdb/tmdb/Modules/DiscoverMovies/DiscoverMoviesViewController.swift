@@ -13,6 +13,8 @@ class DiscoverMoviesViewController: BaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackViewContainer: UIStackView!
 
+    var refreshControl = UIRefreshControl()
+
     //************************************************
     // MARK: - Private Properties
     //************************************************
@@ -45,6 +47,22 @@ class DiscoverMoviesViewController: BaseViewController {
 
     private func setupOnLoad() {
 
+        self.navigationItem.title = "TMDB"
+
+        #if DEBUG
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "DEBUG",
+                                                                      style: .plain,
+                                                                      target: self,
+                                                                      action: #selector(self.debug))
+
+        #endif
+
+        refreshControl.attributedTitle = NSAttributedString(string: "Atualizando...")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        scrollView.refreshControl = refreshControl
+
+
         _viewModel.state.bind { (viewModelState) in
             switch viewModelState {
             case .new(genreList: let list):
@@ -52,12 +70,38 @@ class DiscoverMoviesViewController: BaseViewController {
                 Cartography.constrain(list.viewController.view, self.view) { (listView, container) in
                     listView.height == 220 //container size for movies
                 }
+                self.refreshControl.endRefreshing()
             case .loading:
-                print("VIEW MODEL LOADING")
+                DispatchQueue.main.async {
+                    self.refreshControl.beginRefreshing()
+                }
             case .error(error: let error):
                 print("VIEW MODEL ERROR \(error)")
             }
         }.disposed(by: _disposeBag)
 
     }
+
+    @objc private func refresh() {
+        for subView in stackViewContainer.subviews {
+            stackViewContainer.removeArrangedSubview(subView)
+        }
+        _viewModel.handleReload()
+    }
+
+    #if DEBUG
+    @objc private func debug() {
+
+        let alert = UIAlertController(title: "DEBUG ONLY", message: "Ação disponível apenas em ambiente debug. Conheça o desenvolvedor!", preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction.init(title: "Claro!", style: .default, handler: { (_ ) in
+            self._viewModel.handleDebugMenu()
+        }))
+
+        alert.addAction(UIAlertAction.init(title: "Naah..", style: .cancel, handler: { (_ ) in
+        }))
+
+        self.present(alert, animated: true, completion: nil)
+    }
+    #endif
 }

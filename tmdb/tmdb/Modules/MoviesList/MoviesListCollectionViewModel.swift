@@ -16,6 +16,7 @@ protocol MoviesListCollectionViewModelProtocol: BaseViewModelProtocol {
     var status: Observable<MoviesListCollectionViewModelStatus> { get }
     func item(for row: Int) -> Movie
     var numberOfItems: Int { get }
+    func didSelectItem(at index: Int)
 }
 
 class MoviesListCollectionViewModel: BaseViewModel, MoviesListCollectionViewModelProtocol {
@@ -40,15 +41,17 @@ class MoviesListCollectionViewModel: BaseViewModel, MoviesListCollectionViewMode
     private let _genre: Genre
 
     private var canLoadMore = true
+    private var _onMovieSelection: MovieSelectionClosure
 
     //************************************************
     // MARK: - Lifecycle
     //************************************************
 
-    init(coordinator: MoviesListCollectionCoordinatorProtocol, genre: Genre, discoverRepository: DiscoverMoviesRepository) {
+    init(coordinator: MoviesListCollectionCoordinatorProtocol, genre: Genre, onMovieSelection: @escaping MovieSelectionClosure, discoverRepository: DiscoverMoviesRepository) {
         _discoverRepository = discoverRepository
         _coordinator = coordinator
         _genre = genre
+        _onMovieSelection = onMovieSelection
         super.init()
         bind()
     }
@@ -94,6 +97,10 @@ class MoviesListCollectionViewModel: BaseViewModel, MoviesListCollectionViewMode
             self._discoverRepository.fetch(genre: self._genre, resultIndex: row+preLoadingOffset)
         }
         return _movies[row]
+    }
+
+    func didSelectItem(at index: Int) {
+        _onMovieSelection(_movies[index], _genre)
     }
 
     var numberOfItems: Int {

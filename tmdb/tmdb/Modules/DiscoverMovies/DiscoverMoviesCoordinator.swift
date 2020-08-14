@@ -5,7 +5,7 @@
 import UIKit
 
 protocol DiscoverMoviesCoordinatorProtocol: BaseCoordinatorProtocol {
-
+    func pushDetails(movie: Movie, genre: Genre)
 }
 
 class DiscoverMoviesCoordinator: BaseCoordinator, DiscoverMoviesCoordinatorProtocol {
@@ -35,9 +35,11 @@ class DiscoverMoviesCoordinator: BaseCoordinator, DiscoverMoviesCoordinatorProto
         _viewController = DiscoverMoviesViewController(viewModel: _viewModel)
         _navigationController = UINavigationController(rootViewController: _viewController)
 
-//        DispatchQueue.main.asyncAfter(deadline: .now()+1) { //todo
-//            self.push(MoviesListCollectionCoordinator())
-//        }
+    }
+
+    func pushDetails(movie: Movie, genre: Genre) {
+        let details = MovieDetailsCoordinator(movie: movie, genre: genre, api: AFRequest())
+        self.push(details)
     }
 
 }

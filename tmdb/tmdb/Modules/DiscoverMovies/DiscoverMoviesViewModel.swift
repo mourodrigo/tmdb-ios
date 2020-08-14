@@ -14,6 +14,10 @@ enum DiscoverMoviesViewModelStatus {
 
 protocol DiscoverMoviesViewModelProtocol: BaseViewModelProtocol {
     var state: Observable<DiscoverMoviesViewModelStatus> { get }
+    func handleReload()
+    #if DEBUG
+    func handleDebugMenu()
+    #endif
 }
 
 class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
@@ -71,10 +75,27 @@ class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
     private func handleWhenLoaded(genres: [Genre]) {
         self._genres.onNext(genres)
         for genre in genres {
-            let list = MoviesListCollectionCoordinator(genre: genre)
+            guard let coordinator = self._coordinator else { return }
+            let list = MoviesListCollectionCoordinator(genre: genre,
+                                                       onMovieSelection: coordinator.pushDetails)
             _lists.append(list)
             self._state.onNext(.new(genreList: list))
         }
     }
+
+    func handleReload() {
+        _genreRepository.reload()
+    }
+
+    #if DEBUG
+    func handleDebugMenu() {
+        if let url = URL(string: "https://www.linkedin.com/in/mourodrigo") {
+            UIApplication.shared.open(url)
+        }
+
+    }
+    #endif
+
+
 
 }
