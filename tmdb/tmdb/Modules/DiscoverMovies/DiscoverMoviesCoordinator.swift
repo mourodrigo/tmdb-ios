@@ -35,9 +35,9 @@ class DiscoverMoviesCoordinator: BaseCoordinator, DiscoverMoviesCoordinatorProto
         _viewController = DiscoverMoviesViewController(viewModel: _viewModel)
         _navigationController = UINavigationController(rootViewController: _viewController)
 
-        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-            self.push(MoviesListCollectionCoordinator())
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now()+1) { //todo
+//            self.push(MoviesListCollectionCoordinator())
+//        }
     }
 
 }

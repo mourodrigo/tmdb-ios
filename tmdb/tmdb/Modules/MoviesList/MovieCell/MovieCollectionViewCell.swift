@@ -10,9 +10,15 @@ import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
 
+    private var _movie: Movie?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+
+    func setup(movie: Movie) {
+        _movie = movie
     }
 
 }

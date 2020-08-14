@@ -1,10 +1,10 @@
-//
 //  DiscoverMoviesViewController.swift
 //  tmdb
 
 import UIKit
 import RxSwift
 import RxCocoa
+import Cartography
 
 class DiscoverMoviesViewController: BaseViewController {
     //************************************************
@@ -47,11 +47,11 @@ class DiscoverMoviesViewController: BaseViewController {
 
         _viewModel.state.bind { (viewModelState) in
             switch viewModelState {
-            case .new(genre: let genre):
-                let label = UILabel.init()
-                label.text = genre.name
-                self.stackViewContainer.addArrangedSubview(label)
-                print("NEW GENRE \(genre)")
+            case .new(genreList: let list):
+                self.stackViewContainer.addArrangedSubview(list.viewController.view)
+                Cartography.constrain(list.viewController.view, self.view) { (listView, container) in
+                    listView.height == 100
+                }
             case .loading:
                 print("VIEW MODEL LOADING")
             case .error(error: let error):
@@ -60,9 +60,4 @@ class DiscoverMoviesViewController: BaseViewController {
         }.disposed(by: _disposeBag)
 
     }
-
-
-
-
-
 }

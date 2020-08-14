@@ -7,7 +7,7 @@ import RxSwift
 import RxCocoa
 
 enum DiscoverMoviesViewModelStatus {
-    case new(genre: Genre)
+    case new(genreList: MoviesListCollectionCoordinator)
     case loading
     case error(error: Error)
 }
@@ -33,6 +33,8 @@ class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
     private let _genres = BehaviorSubject<[Genre]>(value: [Genre]())
     var genres: Observable<[Genre]> { return _genres.asObserver() }
 
+    private var _lists = [MoviesListCollectionCoordinator]()
+
     //************************************************
     // MARK: - Lifecycle
     //************************************************
@@ -48,29 +50,6 @@ class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
 
     func bind() {
         _state.onNext(.loading)
-
-        //*************************************************
-        // MARK: - DISCOVER MOVIES
-        //*************************************************
-
-//        _discoverRepository.state.bind { [weak self] (status) in
-//            switch status {
-//            case .updated(genre: let genre, _):
-//                self?._state.onNext(.updated(genre: genre))
-//            case .idle:
-//                break // TODO
-//            case .error(error: let error):
-//                break //TODO
-//            case .loading:
-//                <#code#>
-//            }
-//        }.disposed(by: _disposeBag)
-
-        //*************************************************
-        // MARK: - GENRE REPOSITORY
-        //*************************************************
-
-
 
         _genreRepository.state.bind { [weak self] (genreStatus) in
             switch genreStatus {
@@ -92,20 +71,10 @@ class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
     private func handleWhenLoaded(genres: [Genre]) {
         self._genres.onNext(genres)
         for genre in genres {
-            self._state.onNext(.new(genre: genre))
-            self.handleFetch(genre: genre)
+            let list = MoviesListCollectionCoordinator(genre: genre)
+            _lists.append(list)
+            self._state.onNext(.new(genreList: list))
         }
     }
-
-    private func handleFetch(genre: Genre) {
-//        let firstLoading = 150
-//        self._state.onNext(.fetching(genre: genre))
-//        self._discoverRepository.fetch(genre: genre, resultIndex: firstLoading)
-    }
-
-
-    //************************************************
-    // MARK: - Handle Actions
-    //************************************************
 
 }

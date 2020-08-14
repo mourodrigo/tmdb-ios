@@ -50,6 +50,17 @@ class MoviesListCollectionViewController: BaseViewController {
         collectionView.registerCell(MovieCollectionViewCell.self)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+
+        _viewModel.status.bind { (status) in
+            switch status {
+            case .ready:
+                self.collectionView.reloadData()
+            case .loading:
+                break // todo loading
+            case .error(error: let error):
+                print(error) //TODO ERROR
+            }
+        }.disposed(by: _disposeBag)
     }
 
 }
@@ -63,7 +74,7 @@ extension MoviesListCollectionViewController: UICollectionViewDelegate, UICollec
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return _viewModel.numberOfItems
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -71,7 +82,9 @@ extension MoviesListCollectionViewController: UICollectionViewDelegate, UICollec
                                                             for: indexPath) as? MovieCollectionViewCell
             else { fatalError("Error while dequeueReusableCell on \(String(describing: self))")}
 
-        print(self)
+        let movie = _viewModel.item(for: indexPath.row)
+
+        cell.setup(movie: movie)
 
         return cell
     }

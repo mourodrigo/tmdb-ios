@@ -42,7 +42,6 @@ class DiscoverMoviesRepository: DiscoverMoviesRepositoryProtocol {
     var state: Observable<DiscoverMoviesRepositoryStatus> { return _state.asObserver() }
 
     private var _discoverMovies = [Movie]()
-    private var _genre: Genre
 
     private var _discoverMoviesGenreState = BehaviorSubject<GenreState>(value: GenreState.init(lastPage: nil, isLoading: false))
     var discoverMoviesGenreState: Observable<GenreState> { return _discoverMoviesGenreState.asObserver() }
@@ -56,8 +55,7 @@ class DiscoverMoviesRepository: DiscoverMoviesRepositoryProtocol {
     // MARK: - Life Cycle
     //*************************************************
 
-    init(genre: Genre, api: APIRequest) {
-        _genre = genre
+    init(api: APIRequest) {
         _api = api
     }
 
