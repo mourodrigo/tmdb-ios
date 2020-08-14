@@ -37,7 +37,7 @@ class MovieDetailsViewModel: BaseViewModel, MovieDetailsViewModelProtocol {
     }
 
     var overview: String {
-        return _movie.overview ?? ""
+        return _movie.overview
     }
 
     var genre: String {
