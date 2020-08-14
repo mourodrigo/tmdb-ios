@@ -70,6 +70,8 @@ class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
         // MARK: - GENRE REPOSITORY
         //*************************************************
 
+
+
         _genreRepository.state.bind { [weak self] (genreStatus) in
             switch genreStatus {
             case .success(genres: let list):
