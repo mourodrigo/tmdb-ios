@@ -30,7 +30,6 @@ class DiscoverMoviesCoordinator: BaseCoordinator, DiscoverMoviesCoordinatorProto
         let api = AFRequest()
 
         _viewModel = DiscoverMoviesViewModel(coordinator: self,
-                                             discoverRepository: DiscoverMoviesRepository(api: api),
                                              genreRepository: GenreRepository(api: api))
         
         _viewController = DiscoverMoviesViewController(viewModel: _viewModel)

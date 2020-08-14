@@ -8,8 +8,6 @@ import RxCocoa
 
 enum DiscoverMoviesViewModelStatus {
     case new(genre: Genre)
-    case updated(genre: Genre)
-    case fetching(genre: Genre)
     case loading
     case error(error: Error)
 }
@@ -27,7 +25,6 @@ class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
     private let _disposeBag = DisposeBag()
     private weak var _coordinator: DiscoverMoviesCoordinatorProtocol?
 
-    private let _discoverRepository: DiscoverMoviesRepositoryProtocol
     private let _genreRepository: GenreRepositoryProtocol
 
     private let _state = BehaviorSubject<DiscoverMoviesViewModelStatus>(value: .loading)
@@ -40,9 +37,8 @@ class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
     // MARK: - Lifecycle
     //************************************************
 
-    init(coordinator: DiscoverMoviesCoordinatorProtocol, discoverRepository: DiscoverMoviesRepositoryProtocol, genreRepository: GenreRepositoryProtocol) {
+    init(coordinator: DiscoverMoviesCoordinatorProtocol, genreRepository: GenreRepositoryProtocol) {
         _coordinator = coordinator
-        _discoverRepository = discoverRepository
         _genreRepository = genreRepository
         super.init()
         DispatchQueue.global().asyncAfter(deadline: .now()+1) {
@@ -57,16 +53,18 @@ class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
         // MARK: - DISCOVER MOVIES
         //*************************************************
 
-        _discoverRepository.state.bind { [weak self] (status) in
-            switch status {
-            case .updated(genre: let genre, _):
-                self?._state.onNext(.updated(genre: genre))
-            case .idle:
-                break // TODO
-            case .error(error: let error):
-                break //TODO
-            }
-        }.disposed(by: _disposeBag)
+//        _discoverRepository.state.bind { [weak self] (status) in
+//            switch status {
+//            case .updated(genre: let genre, _):
+//                self?._state.onNext(.updated(genre: genre))
+//            case .idle:
+//                break // TODO
+//            case .error(error: let error):
+//                break //TODO
+//            case .loading:
+//                <#code#>
+//            }
+//        }.disposed(by: _disposeBag)
 
         //*************************************************
         // MARK: - GENRE REPOSITORY
@@ -98,9 +96,9 @@ class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
     }
 
     private func handleFetch(genre: Genre) {
-        let firstLoading = 150
-        self._state.onNext(.fetching(genre: genre))
-        self._discoverRepository.fetch(genre: genre, resultIndex: firstLoading)
+//        let firstLoading = 150
+//        self._state.onNext(.fetching(genre: genre))
+//        self._discoverRepository.fetch(genre: genre, resultIndex: firstLoading)
     }
 
 

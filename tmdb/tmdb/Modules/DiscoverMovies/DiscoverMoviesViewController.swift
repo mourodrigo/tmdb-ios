@@ -10,6 +10,8 @@ class DiscoverMoviesViewController: BaseViewController {
     //************************************************
     // MARK: - @IBOutlets
     //************************************************
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var stackViewContainer: UIStackView!
 
     //************************************************
     // MARK: - Private Properties
@@ -46,11 +48,10 @@ class DiscoverMoviesViewController: BaseViewController {
         _viewModel.state.bind { (viewModelState) in
             switch viewModelState {
             case .new(genre: let genre):
+                let label = UILabel.init()
+                label.text = genre.name
+                self.stackViewContainer.addArrangedSubview(label)
                 print("NEW GENRE \(genre)")
-            case .updated(genre: let genre):
-                print("UPDATED GENRE \(genre)")
-            case .fetching(genre: let genre):
-                print("FETCHING GENRE \(genre)")
             case .loading:
                 print("VIEW MODEL LOADING")
             case .error(error: let error):
@@ -59,5 +60,9 @@ class DiscoverMoviesViewController: BaseViewController {
         }.disposed(by: _disposeBag)
 
     }
+
+
+
+
 
 }

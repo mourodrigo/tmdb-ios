@@ -7,11 +7,14 @@ import RxSwift
 enum DiscoverMoviesRepositoryStatus {
     case updated(genre: Genre, movies: [Movie])
     case idle
+    case loading
     case error(error: Error)
 
     static func == (lhs: DiscoverMoviesRepositoryStatus, rhs: DiscoverMoviesRepositoryStatus) -> Bool {
         switch (lhs, rhs) {
         case (.idle, .idle):
+            return true
+        case (.loading, .loading):
             return true
         case let (.error(error: errorA), .error(error: errorB)):
             return errorA.localizedDescription == errorB.localizedDescription
@@ -23,7 +26,6 @@ enum DiscoverMoviesRepositoryStatus {
         }
     }
 }
-
 
 protocol DiscoverMoviesRepositoryProtocol {
     var state: Observable<DiscoverMoviesRepositoryStatus> { get }
@@ -39,18 +41,14 @@ class DiscoverMoviesRepository: DiscoverMoviesRepositoryProtocol {
     private let _state = BehaviorSubject<DiscoverMoviesRepositoryStatus>(value: .idle)
     var state: Observable<DiscoverMoviesRepositoryStatus> { return _state.asObserver() }
 
-    private var _discoverMovies = [Int:[Movie]]()
+    private var _discoverMovies = [Movie]()
+    private var _genre: Genre
 
-    private var _discoverMoviesGenreStates = [Int:GenreStates]()
+    private var _discoverMoviesGenreState = BehaviorSubject<GenreState>(value: GenreState.init(lastPage: nil, isLoading: false))
+    var discoverMoviesGenreState: Observable<GenreState> { return _discoverMoviesGenreState.asObserver() }
 
-    //    private var _discoverMoviesGenreStates = BehaviorSubject<[Int:GenreStates]>(value: [Int:GenreStates]())
-    //    var discoverMoviesGenreStates: Observable<[Int:GenreStates]> { return _discoverMoviesGenreStates.asObserver() }
-
-
-    struct GenreStates {
+    struct GenreState {
         let lastPage: Int?
-        let totalResults: Int?
-        let totalPages: Int?
         let isLoading: Bool
     }
 
@@ -58,51 +56,49 @@ class DiscoverMoviesRepository: DiscoverMoviesRepositoryProtocol {
     // MARK: - Life Cycle
     //*************************************************
 
-    init(api: APIRequest) {
+    init(genre: Genre, api: APIRequest) {
+        _genre = genre
         _api = api
     }
 
     func clean() {
-        _discoverMovies = [Int: [Movie]]()
+        _discoverMovies = [Movie]()
     }
 
-    private func hasLoadedEnough(of genre: Genre, resultIndex: Int) -> Bool {
-        return resultIndex+1 >= _discoverMovies[genre.id]?.count ?? 0 ? false : true
+    private func hasLoadedEnough(resultIndex: Int) -> Bool {
+        return resultIndex+1 >= _discoverMovies.count ? false : true
     }
 
-    private func setLoading(for genre: Genre) -> Bool {
-        _discoverMoviesGenreStates[genre.id]?.isLoading == true
+    private func setPageLoading(lastPage: Int, isLoading: Bool) {
+        let state = GenreState(lastPage: lastPage, isLoading: isLoading)
+        self._discoverMoviesGenreState.onNext(state)
+        self._state.onNext(.loading)
     }
 
     func fetch(genre: Genre, resultIndex: Int) {
 
-        if self._discoverMovies[genre.id] == nil  {
-            self._discoverMovies[genre.id] = [Movie]()
-        }
-
-        if hasLoadedEnough(of: genre, resultIndex: resultIndex), let movies = _discoverMovies[genre.id] {
-            self._state.onNext(.updated(genre: genre, movies: movies))
+        if hasLoadedEnough(resultIndex: resultIndex){
+            self._state.onNext(.updated(genre: genre, movies: _discoverMovies))
             return
         }
 
         // checking which page to fetch
-        var lastPageNumber: Int {
-            let lastPageFetched = _discoverMoviesGenreStates[genre.id]?.lastPage
+        var pageToLoadNumber: Int {
+            let lastPageFetched = try? _discoverMoviesGenreState.value().lastPage
             return lastPageFetched == nil ? 0 : lastPageFetched! + 1
         }
 
-        _api.get(url: TMDB.resourceURL.discoverMovies(genreId: genre.id).URLValue(page: lastPageNumber),
+        setPageLoading(lastPage: pageToLoadNumber, isLoading: true)
+
+        _api.get(url: TMDB.resourceURL.discoverMovies(genreId: genre.id).URLValue(page: pageToLoadNumber),
                 onSuccess: { [weak self] (data) in
                     guard let self = self else { return }
 
                     if let object = data.mapObject(DiscoverMovies.self) {
 
-                        self._discoverMoviesGenreStates[genre.id] = GenreStates(lastPage: lastPageNumber,
-                                                                        totalResults: object.totalResults,
-                                                                        totalPages: object.totalPages,
-                                                                        isLoading: false)
+                        self.setPageLoading(lastPage: pageToLoadNumber, isLoading: false)
 
-                        self._discoverMovies[genre.id]?.append(contentsOf: object.all)
+                        self._discoverMovies.append(contentsOf: object.all)
 
                         self.fetch(genre: genre, resultIndex: resultIndex)
                         return
@@ -112,28 +108,6 @@ class DiscoverMoviesRepository: DiscoverMoviesRepositoryProtocol {
                     CustomError.serverError(details: error.localizedDescription)))
         }
 
-
-
-
-
-
-
-
     }
-
-//    func fetch(page: Int = 0) {
-//        _state.onNext(.loading)
-//        _api.get(url: TMDB.resourceURL.discoverMovies.URLValue(page: page),
-//                onSuccess: { [weak self] (data) in
-//                    if let object = data.mapObject(DiscoverMovies.self) {
-//                        self?._state.onNext(.success(movies: object.all))
-//                        return
-//                    }
-//                    self?._state.onNext(.error(error: CustomError.mappingResponse))
-//        }) { [weak self] (error) in
-//            self?._state.onNext(.error(error:
-//                    CustomError.serverError(details: error.localizedDescription)))
-//        }
-//    }
 
 }
