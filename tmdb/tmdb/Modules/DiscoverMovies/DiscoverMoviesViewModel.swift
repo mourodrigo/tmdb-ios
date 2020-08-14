@@ -71,7 +71,9 @@ class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
     private func handleWhenLoaded(genres: [Genre]) {
         self._genres.onNext(genres)
         for genre in genres {
-            let list = MoviesListCollectionCoordinator(genre: genre)
+            guard let coordinator = self._coordinator else { return }
+            let list = MoviesListCollectionCoordinator(genre: genre,
+                                                       onMovieSelection: coordinator.pushDetails)
             _lists.append(list)
             self._state.onNext(.new(genreList: list))
         }

@@ -97,4 +97,8 @@ extension MoviesListCollectionViewController: UICollectionViewDelegate, UICollec
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        _viewModel.didSelectItem(at: indexPath.row)
+    }
+
 }
