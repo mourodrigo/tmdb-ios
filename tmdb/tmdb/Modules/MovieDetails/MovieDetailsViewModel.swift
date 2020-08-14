@@ -10,6 +10,9 @@ protocol MovieDetailsViewModelProtocol: BaseViewModelProtocol {
     var title: String { get }
     var genre: String { get }
     var overview: String { get }
+    var rating: Int { get }
+    var releaseDate: String? { get }
+    var popularity: String { get }
 }
 
 class MovieDetailsViewModel: BaseViewModel, MovieDetailsViewModelProtocol {
@@ -34,11 +37,39 @@ class MovieDetailsViewModel: BaseViewModel, MovieDetailsViewModelProtocol {
     }
 
     var overview: String {
-        return _movie.overview
+        return _movie.overview ?? ""
     }
 
     var genre: String {
         return _genre.name
+    }
+
+    var rating: Int {
+        return Int(_movie.voteAverage ?? 0)
+    }
+
+    var popularity: String {
+        return "👍 \(_movie.popularity ?? 0) likes"
+    }
+
+    var releaseDate: String? {
+        //reformatting date
+        //todo move to Movie data encoding
+        if let releaseDate = _movie.releaseDate {
+
+            let isoDate = "\(releaseDate)T00:00:00+0000"
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+
+            guard   let date = dateFormatter.date(from:isoDate)
+                    else { return nil }
+
+            let newFormatter = DateFormatter()
+            newFormatter.dateFormat = "dd-MM-yyyy"
+            return "Lançamento: " + newFormatter.string(from: date)
+        }
+        return nil
     }
 
     //************************************************
