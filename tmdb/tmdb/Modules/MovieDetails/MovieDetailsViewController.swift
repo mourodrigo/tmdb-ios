@@ -61,6 +61,8 @@ class MovieDetailsViewController: BaseViewController {
             self?.imageView.image = image
         }.disposed(by: _disposeBag)
 
+        setRatingStars()
+
     }
 
     //saving time by using emojis... sorry for it

@@ -35,6 +35,15 @@ extension AppDelegate: UIApplicationDelegate {
 extension AppDelegate {
 
     func setup() {
+
+
+        //storing some repositories
+        SharedLocator.shared.register(ConfigurationRepositoryProtocol.self,
+                                      instance: ConfigurationRepository(api: AFRequest()))
+
+        SharedLocator.shared.register(ImageRepository.self, instance: AFImageRepository())
+
+
         // setup root window (Startup Module)
         let rootCoordinator = Coordinator()
         let rootWindow = UIWindow(frame: UIScreen.main.bounds)
@@ -44,11 +53,9 @@ extension AppDelegate {
         window = rootWindow
 
         let appCoordinator = AppCoordinator(rootCoordinator: rootCoordinator)
-
         SharedLocator.shared.register(AppCoordinatorProtocol.self, instance: appCoordinator)
-        SharedLocator.shared.register(ImageRepository.self, instance: AFImageRepository())
-        SharedLocator.shared.register(ConfigurationRepositoryProtocol.self,
-                                      instance: ConfigurationRepository(api: AFRequest()))
+
+
 
     }
 }
