@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingView" customModule="tmdb" customModuleProvider="target">
+            <connections>
+                <outlet property="activity" destination="ZwE-18-GuQ" id="lgZ-9f-NXn"/>
+                <outlet property="loadingAnimationContainer" destination="v7g-XC-4Yq" id="boe-B9-agP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="BGX-ZT-nnT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bf6-FX-P06">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v7g-XC-4Yq">
+                            <rect key="frame" x="24" y="398" width="366" height="100"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="jXl-qT-7aw"/>
+                            </constraints>
+                        </view>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ZwE-18-GuQ">
+                            <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="ZwE-18-GuQ" firstAttribute="centerY" secondItem="bf6-FX-P06" secondAttribute="centerY" id="BOp-kc-cL2"/>
+                        <constraint firstItem="v7g-XC-4Yq" firstAttribute="centerY" secondItem="bf6-FX-P06" secondAttribute="centerY" id="Fbb-0G-wQv"/>
+                        <constraint firstAttribute="trailing" secondItem="v7g-XC-4Yq" secondAttribute="trailing" constant="24" id="FpO-re-th6"/>
+                        <constraint firstItem="v7g-XC-4Yq" firstAttribute="leading" secondItem="bf6-FX-P06" secondAttribute="leading" constant="24" id="HmD-UI-Lwt"/>
+                        <constraint firstItem="ZwE-18-GuQ" firstAttribute="centerX" secondItem="bf6-FX-P06" secondAttribute="centerX" id="L7h-OO-u3y"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="bf6-FX-P06" firstAttribute="leading" secondItem="VPt-kK-NID" secondAttribute="leading" id="6XW-xk-Xzi"/>
+                <constraint firstItem="VPt-kK-NID" firstAttribute="trailing" secondItem="bf6-FX-P06" secondAttribute="trailing" id="8I0-1P-48f"/>
+                <constraint firstAttribute="bottom" secondItem="bf6-FX-P06" secondAttribute="bottom" id="OrE-Vs-jdc"/>
+                <constraint firstItem="bf6-FX-P06" firstAttribute="top" secondItem="BGX-ZT-nnT" secondAttribute="top" id="uU3-Qf-gMt"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="VPt-kK-NID"/>
+            <point key="canvasLocation" x="139" y="140"/>
+        </view>
+    </objects>
+</document>
