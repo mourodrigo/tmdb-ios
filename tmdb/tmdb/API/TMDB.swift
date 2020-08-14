@@ -39,7 +39,7 @@ class TMDB {
         }
 
         func URLValue(page: Int) -> URL {
-            let pagedString = self.stringValue + "&page\(page)"
+            let pagedString = self.stringValue + "&page=\(page)"
             guard let url = URL(string: pagedString) else {
                 fatalError("URLs MUST be valid at \(String(describing: self))")
             }

@@ -27,6 +27,7 @@ enum ConfigurationRepositoryStatus {
 protocol ConfigurationRepositoryProtocol {
     var state: Observable<ConfigurationRepositoryStatus> { get }
     func fetch()
+    func posterPath() -> String?
 }
 
 class ConfigurationRepository: ConfigurationRepositoryProtocol {
@@ -60,6 +61,22 @@ class ConfigurationRepository: ConfigurationRepositoryProtocol {
             self?._state.onNext(.error(error:
                     CustomError.serverError(details: error.localizedDescription)))
         }
+    }
+
+    func posterPath() -> String? {
+        switch try? _state.value() {
+        case .success(let configuration):
+            let base = configuration.images.baseURL
+
+            //TODO: choose poster size depending on container size passed by param
+            if let posterSize = configuration.images.posterSizes.first {
+                return "\(base)\(posterSize)"
+            }
+            return nil
+
+        default: return nil
+        }
+
     }
 
 }

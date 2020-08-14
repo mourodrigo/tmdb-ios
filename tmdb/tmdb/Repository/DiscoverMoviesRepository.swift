@@ -84,7 +84,7 @@ class DiscoverMoviesRepository: DiscoverMoviesRepositoryProtocol {
 
         // checking which page to fetch
         let lastPageFetched = try? _discoverMoviesGenreState.value().lastPage
-        let pageToLoadNumber = lastPageFetched == nil ? 0 : lastPageFetched! + 1
+        let pageToLoadNumber = lastPageFetched == nil ? 1 : lastPageFetched! + 1
 
         setPageLoading(lastPage: pageToLoadNumber, isLoading: true)
         _backgroundThread.async {

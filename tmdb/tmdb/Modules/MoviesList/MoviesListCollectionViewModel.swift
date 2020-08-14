@@ -59,7 +59,16 @@ class MoviesListCollectionViewModel: BaseViewModel, MoviesListCollectionViewMode
             case .updated(genre: let genre, movies: let movies):
                 self?._movies = movies
                 self?._genreText.onNext(genre.name)
-                self?._status.onNext(.ready)
+
+                //preventing looping from collectionview reloadData()
+                //which will call the same repository again
+
+                switch try? self?._status.value() {
+                case .ready: break
+                default:
+                    self?._status.onNext(.ready)
+                }
+
                 self?.canLoadMore = true
             case .idle:
                 self?._status.onNext(.ready)

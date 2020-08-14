@@ -30,7 +30,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BE2-kY-lMy">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BE2-kY-lMy">
                                 <rect key="frame" x="0.0" y="0.0" width="205" height="147"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
@@ -64,7 +64,7 @@
                 <outlet property="imageView" destination="BE2-kY-lMy" id="0gM-rF-CHa"/>
                 <outlet property="nameLabel" destination="ejB-z2-gcs" id="qIt-Dr-e7t"/>
             </connections>
-            <point key="canvasLocation" x="-25" y="127"/>
+            <point key="canvasLocation" x="-205" y="-4"/>
         </collectionViewCell>
     </objects>
 </document>

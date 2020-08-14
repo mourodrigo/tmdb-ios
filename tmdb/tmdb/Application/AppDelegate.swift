@@ -46,7 +46,9 @@ extension AppDelegate {
         let appCoordinator = AppCoordinator(rootCoordinator: rootCoordinator)
 
         SharedLocator.shared.register(AppCoordinatorProtocol.self, instance: appCoordinator)
-        SharedLocator.shared.register(APIRequest.self, instance: MOCKED_APIRequests_Success())
+        SharedLocator.shared.register(ImageRepository.self, instance: AFImageRepository())
+        SharedLocator.shared.register(ConfigurationRepositoryProtocol.self,
+                                      instance: ConfigurationRepository(api: AFRequest()))
 
     }
 }

@@ -14,6 +14,7 @@ class MoviesListCollectionViewController: BaseViewController {
     // MARK: - @IBOutlets
     //************************************************
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var genreLabel: UILabel!
 
     //************************************************
     // MARK: - Private Properties
@@ -62,6 +63,11 @@ class MoviesListCollectionViewController: BaseViewController {
                     print(error) //TODO ERROR
                 }
             }
+        }.disposed(by: _disposeBag)
+
+        self.genreLabel.text = "" //default value
+        _viewModel.genreText.bind { (text) in
+            self.genreLabel.text = text
         }.disposed(by: _disposeBag)
     }
 

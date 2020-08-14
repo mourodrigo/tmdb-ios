@@ -21,13 +21,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1As-LN-F1Y">
-                    <rect key="frame" x="16" y="44" width="343" height="788"/>
+                    <rect key="frame" x="0.0" y="44" width="375" height="788"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbi-8P-3cF">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="832"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="832"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="2G8-z5-YmZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="832"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="832"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="700" id="zP2-3J-Rpg"/>
                                     </constraints>
@@ -54,14 +54,13 @@
                     <viewLayoutGuide key="frameLayoutGuide" id="a8d-1p-Iti"/>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="0v5-yd-4AB" firstAttribute="bottom" secondItem="1As-LN-F1Y" secondAttribute="bottom" id="475-Su-g2V"/>
                 <constraint firstItem="hbi-8P-3cF" firstAttribute="height" secondItem="4rs-Zy-5gN" secondAttribute="height" priority="250" id="7cm-Qh-Ipz"/>
                 <constraint firstItem="1As-LN-F1Y" firstAttribute="top" secondItem="0v5-yd-4AB" secondAttribute="top" id="Bh7-44-qRz"/>
                 <constraint firstItem="hbi-8P-3cF" firstAttribute="width" secondItem="4rs-Zy-5gN" secondAttribute="width" priority="250" id="NJG-44-n0I"/>
-                <constraint firstItem="0v5-yd-4AB" firstAttribute="trailing" secondItem="1As-LN-F1Y" secondAttribute="trailing" constant="16" id="bU7-oB-eHH"/>
-                <constraint firstItem="1As-LN-F1Y" firstAttribute="leading" secondItem="0v5-yd-4AB" secondAttribute="leading" constant="16" id="pAO-Oz-tW8"/>
+                <constraint firstItem="0v5-yd-4AB" firstAttribute="trailing" secondItem="1As-LN-F1Y" secondAttribute="trailing" id="bU7-oB-eHH"/>
+                <constraint firstItem="1As-LN-F1Y" firstAttribute="leading" secondItem="0v5-yd-4AB" secondAttribute="leading" id="pAO-Oz-tW8"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="0v5-yd-4AB"/>
