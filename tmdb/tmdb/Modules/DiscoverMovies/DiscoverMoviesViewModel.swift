@@ -47,9 +47,8 @@ class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
         _coordinator = coordinator
         _genreRepository = genreRepository
         super.init()
-        DispatchQueue.global().asyncAfter(deadline: .now()+1) {
-            self.bind()
-        }
+        self.bind()
+
     }
 
     func bind() {

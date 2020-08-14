@@ -24,7 +24,7 @@ class MovieDetailViewModelTests: XCTestCase {
                             video: false,
                             voteCount: 300,
                             voteAverage: 5423/0,
-                            title: "",
+                            title: title,
                             releaseDate: "2020-08-14",
                             originalLanguage: nil,
                             originalTitle: title,

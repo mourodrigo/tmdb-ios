@@ -33,7 +33,7 @@ class MovieDetailsViewModel: BaseViewModel, MovieDetailsViewModelProtocol {
     var posterImage: Observable<UIImage?> { return _posterImage.asObserver() }
 
     var title: String {
-        return _movie.originalTitle ?? ""
+        return _movie.title ?? ""
     }
 
     var overview: String {

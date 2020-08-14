@@ -16,7 +16,6 @@ class ViewController: BaseViewController {
 
     private weak var _viewModel: ViewModelProtocol!
     override var viewModel: BaseViewModelProtocol { return _viewModel }
-    @IBOutlet weak var button: UIButton!
     private let _disposeBag = DisposeBag()
 
     //************************************************
@@ -41,8 +40,6 @@ class ViewController: BaseViewController {
     // MARK: - Setup
     //************************************************
 
-    private func setupOnLoad() {
-        button.setTitle("HELLO WORLD", for: .normal)
-    }
+    private func setupOnLoad() {}
 
 }
