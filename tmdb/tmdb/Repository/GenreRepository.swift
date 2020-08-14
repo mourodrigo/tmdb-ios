@@ -30,6 +30,7 @@ enum GenreRepositoryStatus: Equatable {
 protocol GenreRepositoryProtocol {
     var state: Observable<GenreRepositoryStatus> { get }
     func fetch()
+    func reload()
 }
 
 class GenreRepository: GenreRepositoryProtocol {
@@ -62,6 +63,11 @@ class GenreRepository: GenreRepositoryProtocol {
             self?._state.onNext(.error(error:
                     CustomError.serverError(details: error.localizedDescription)))
         }
+    }
+
+    func reload() {
+        _state.onNext(.loading)
+        fetch()
     }
 
 }

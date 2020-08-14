@@ -59,8 +59,9 @@ class MoviesListCollectionViewController: BaseViewController {
                     self.collectionView.reloadData()
                 case .loading:
                     break // todo loading
-                case .error(error: let error):
-                    print(error) //TODO ERROR
+                case .error(error: _):
+                    //removes itself if having an error to load
+                    self.view.removeFromSuperview()
                 }
             }
         }.disposed(by: _disposeBag)

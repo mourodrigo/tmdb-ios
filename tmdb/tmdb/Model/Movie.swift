@@ -17,10 +17,11 @@ struct Movie: BiCodable {
     let title, releaseDate: String?
     let originalLanguage: String?
     let originalTitle: String?
-    let genreIDS: [Int]
+    let genreIDS: [Int]?
     let backdropPath: String?
-    let adult: Bool
-    let overview, posterPath: String
+    let adult: Bool?
+    let overview: String
+    let posterPath: String
 
     enum CodingKeys: String, CodingKey {
         case popularity, id, video

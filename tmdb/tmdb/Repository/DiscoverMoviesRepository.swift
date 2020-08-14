@@ -103,6 +103,7 @@ class DiscoverMoviesRepository: DiscoverMoviesRepositoryProtocol {
                             self.fetch(genre: genre, resultIndex: resultIndex)
                             return
                         }
+                        self._state.onNext(.error(error: CustomError.mappingResponse))
             }) { [weak self] (error) in
                 self?._state.onNext(.error(error:
                         CustomError.serverError(details: error.localizedDescription)))

@@ -54,6 +54,7 @@
                     <viewLayoutGuide key="frameLayoutGuide" id="a8d-1p-Iti"/>
                 </scrollView>
             </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="0v5-yd-4AB" firstAttribute="bottom" secondItem="1As-LN-F1Y" secondAttribute="bottom" id="475-Su-g2V"/>
                 <constraint firstItem="hbi-8P-3cF" firstAttribute="height" secondItem="4rs-Zy-5gN" secondAttribute="height" priority="250" id="7cm-Qh-Ipz"/>
