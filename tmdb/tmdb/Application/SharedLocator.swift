@@ -113,7 +113,12 @@ extension SharedLocator {
 	// App Coordinator
 	var appCoordinator: AppCoordinatorProtocol { return self.resolve(AppCoordinatorProtocol.self) }
 
-//    // Session //todo
-//    var session: SessionProtocol { return self.resolve(SessionProtocol.self) }
+    // Image Repository
+    var imageRepository: ImageRepository { return self.resolve(ImageRepository.self) }
+
+    // ConfigurationRepository
+    var configurationRepository: ConfigurationRepositoryProtocol { return self.resolve(ConfigurationRepositoryProtocol.self) }
+
+
 
 }
