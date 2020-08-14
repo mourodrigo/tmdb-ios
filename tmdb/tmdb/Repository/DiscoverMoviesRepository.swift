@@ -51,6 +51,8 @@ class DiscoverMoviesRepository: DiscoverMoviesRepositoryProtocol {
         let isLoading: Bool
     }
 
+    let _backgroundThread = DispatchQueue.global()
+
     //*************************************************
     // MARK: - Life Cycle
     //*************************************************
@@ -75,35 +77,36 @@ class DiscoverMoviesRepository: DiscoverMoviesRepositoryProtocol {
 
     func fetch(genre: Genre, resultIndex: Int) {
 
-        if hasLoadedEnough(resultIndex: resultIndex){
+        if hasLoadedEnough(resultIndex: resultIndex) {
             self._state.onNext(.updated(genre: genre, movies: _discoverMovies))
             return
         }
 
         // checking which page to fetch
-        var pageToLoadNumber: Int {
-            let lastPageFetched = try? _discoverMoviesGenreState.value().lastPage
-            return lastPageFetched == nil ? 0 : lastPageFetched! + 1
-        }
+        let lastPageFetched = try? _discoverMoviesGenreState.value().lastPage
+        let pageToLoadNumber = lastPageFetched == nil ? 0 : lastPageFetched! + 1
 
         setPageLoading(lastPage: pageToLoadNumber, isLoading: true)
+        _backgroundThread.async {
+            self._api.get(url: TMDB.resourceURL.discoverMovies(genreId: genre.id).URLValue(page: pageToLoadNumber),
+                    onSuccess: { [weak self] (data) in
+                        guard let self = self else { return }
 
-        _api.get(url: TMDB.resourceURL.discoverMovies(genreId: genre.id).URLValue(page: pageToLoadNumber),
-                onSuccess: { [weak self] (data) in
-                    guard let self = self else { return }
+                        if let object = data.mapObject(DiscoverMovies.self) {
 
-                    if let object = data.mapObject(DiscoverMovies.self) {
+                            self.setPageLoading(lastPage: pageToLoadNumber, isLoading: false)
 
-                        self.setPageLoading(lastPage: pageToLoadNumber, isLoading: false)
+                            self._discoverMovies.append(contentsOf: object.all)
 
-                        self._discoverMovies.append(contentsOf: object.all)
+                            self._state.onNext(.idle)
 
-                        self.fetch(genre: genre, resultIndex: resultIndex)
-                        return
-                    }
-        }) { [weak self] (error) in
-            self?._state.onNext(.error(error:
-                    CustomError.serverError(details: error.localizedDescription)))
+                            self.fetch(genre: genre, resultIndex: resultIndex)
+                            return
+                        }
+            }) { [weak self] (error) in
+                self?._state.onNext(.error(error:
+                        CustomError.serverError(details: error.localizedDescription)))
+            }
         }
 
     }

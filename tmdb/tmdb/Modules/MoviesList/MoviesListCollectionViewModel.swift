@@ -39,6 +39,8 @@ class MoviesListCollectionViewModel: BaseViewModel, MoviesListCollectionViewMode
     private var _movies = [Movie]()
     private let _genre: Genre
 
+    private var canLoadMore = true
+
     //************************************************
     // MARK: - Lifecycle
     //************************************************
@@ -58,10 +60,12 @@ class MoviesListCollectionViewModel: BaseViewModel, MoviesListCollectionViewMode
                 self?._movies = movies
                 self?._genreText.onNext(genre.name)
                 self?._status.onNext(.ready)
+                self?.canLoadMore = true
             case .idle:
                 self?._status.onNext(.ready)
             case .loading:
                 if self?._movies.count == 0 { self?._status.onNext(.loading) }
+                self?.canLoadMore = false
             case .error(error: let error):
                 self?._status.onNext(.error(error: error))
             }
@@ -71,11 +75,15 @@ class MoviesListCollectionViewModel: BaseViewModel, MoviesListCollectionViewMode
 
     }
 
-    private func fetch(genre: Genre, index: Int = 20) {
+    private func fetch(genre: Genre, index: Int = 30) {
         self._discoverRepository.fetch(genre: genre, resultIndex: index)
     }
 
     func item(for row: Int) -> Movie {
+        let preLoadingOffset = 10
+        if canLoadMore {
+            self._discoverRepository.fetch(genre: self._genre, resultIndex: row+preLoadingOffset)
+        }
         return _movies[row]
     }
 

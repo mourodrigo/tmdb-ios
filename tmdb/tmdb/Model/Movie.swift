@@ -9,16 +9,16 @@
 import Foundation
 
 struct Movie: BiCodable {
-    let popularity: Double
+    let popularity: Double?
     let id: Int
-    let video: Bool
-    let voteCount: Int
-    let voteAverage: Double
-    let title, releaseDate: String
-    let originalLanguage: String
-    let originalTitle: String
+    let video: Bool?
+    let voteCount: Int?
+    let voteAverage: Double?
+    let title, releaseDate: String?
+    let originalLanguage: String?
+    let originalTitle: String?
     let genreIDS: [Int]
-    let backdropPath: String
+    let backdropPath: String?
     let adult: Bool
     let overview, posterPath: String
 

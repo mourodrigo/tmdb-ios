@@ -52,13 +52,15 @@ class MoviesListCollectionViewController: BaseViewController {
         self.collectionView.dataSource = self
 
         _viewModel.status.bind { (status) in
-            switch status {
-            case .ready:
-                self.collectionView.reloadData()
-            case .loading:
-                break // todo loading
-            case .error(error: let error):
-                print(error) //TODO ERROR
+            DispatchQueue.main.async {
+                switch status {
+                case .ready:
+                    self.collectionView.reloadData()
+                case .loading:
+                    break // todo loading
+                case .error(error: let error):
+                    print(error) //TODO ERROR
+                }
             }
         }.disposed(by: _disposeBag)
     }

@@ -20,26 +20,38 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmz-Vq-8uv">
                         <rect key="frame" x="0.0" y="0.0" width="205" height="177"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejB-z2-gcs">
-                                <rect key="frame" x="81.5" y="78" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejB-z2-gcs">
+                                <rect key="frame" x="0.0" y="147" width="205" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="sjp-JU-e4X"/>
-                                    <constraint firstAttribute="height" constant="21" id="soF-wB-l3k"/>
+                                    <constraint firstAttribute="height" constant="30" id="soF-wB-l3k"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BE2-kY-lMy">
+                                <rect key="frame" x="0.0" y="0.0" width="205" height="147"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ejB-z2-gcs" firstAttribute="centerY" secondItem="dmz-Vq-8uv" secondAttribute="centerY" id="57K-d7-1Hf"/>
-                            <constraint firstItem="ejB-z2-gcs" firstAttribute="centerX" secondItem="dmz-Vq-8uv" secondAttribute="centerX" id="gGQ-4b-2kk"/>
+                            <constraint firstAttribute="trailing" secondItem="ejB-z2-gcs" secondAttribute="trailing" id="MYN-Kg-ngJ"/>
+                            <constraint firstAttribute="trailing" secondItem="ejB-z2-gcs" secondAttribute="trailing" id="Pm8-iq-azs"/>
+                            <constraint firstItem="ejB-z2-gcs" firstAttribute="top" secondItem="BE2-kY-lMy" secondAttribute="bottom" id="UO5-aA-bbN"/>
+                            <constraint firstItem="BE2-kY-lMy" firstAttribute="leading" secondItem="dmz-Vq-8uv" secondAttribute="leading" id="VZK-bH-f7G"/>
+                            <constraint firstItem="ejB-z2-gcs" firstAttribute="leading" secondItem="dmz-Vq-8uv" secondAttribute="leading" id="Wvd-yV-13N"/>
+                            <constraint firstItem="ejB-z2-gcs" firstAttribute="leading" secondItem="dmz-Vq-8uv" secondAttribute="leading" id="cur-q4-wU2"/>
+                            <constraint firstItem="BE2-kY-lMy" firstAttribute="top" secondItem="dmz-Vq-8uv" secondAttribute="top" id="liO-lR-dmp"/>
+                            <constraint firstAttribute="bottom" secondItem="ejB-z2-gcs" secondAttribute="bottom" id="s98-qx-Yz2"/>
+                            <constraint firstAttribute="trailing" secondItem="BE2-kY-lMy" secondAttribute="trailing" id="u7J-hI-d8b"/>
+                            <constraint firstAttribute="bottom" secondItem="ejB-z2-gcs" secondAttribute="bottom" id="vs7-uA-ROT"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="dmz-Vq-8uv" secondAttribute="bottom" id="BRc-fX-1AM"/>
                 <constraint firstItem="dmz-Vq-8uv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="d53-vr-HeW"/>
@@ -48,7 +60,11 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="205" height="177"/>
-            <point key="canvasLocation" x="19.565217391304348" y="195.20089285714286"/>
+            <connections>
+                <outlet property="imageView" destination="BE2-kY-lMy" id="0gM-rF-CHa"/>
+                <outlet property="nameLabel" destination="ejB-z2-gcs" id="qIt-Dr-e7t"/>
+            </connections>
+            <point key="canvasLocation" x="-25" y="127"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -50,7 +50,7 @@ class DiscoverMoviesViewController: BaseViewController {
             case .new(genreList: let list):
                 self.stackViewContainer.addArrangedSubview(list.viewController.view)
                 Cartography.constrain(list.viewController.view, self.view) { (listView, container) in
-                    listView.height == 100
+                    listView.height == 150
                 }
             case .loading:
                 print("VIEW MODEL LOADING")
