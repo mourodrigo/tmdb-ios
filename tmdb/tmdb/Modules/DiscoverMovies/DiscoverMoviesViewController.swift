@@ -71,15 +71,15 @@ class DiscoverMoviesViewController: BaseViewController {
                     Cartography.constrain(list.viewController.view, self.view) { (listView, container) in
                         listView.height == 220 //container size for movies
                     }
-//                    self.refreshControl.endRefreshing()
+                    self.refreshControl.endRefreshing()
                 }
             case .loading:
                 DispatchQueue.main.async {
-//                    self.refreshControl.beginRefreshing()
+                    self.refreshControl.beginRefreshing()
                 }
             case .error(error: _ ):
                 DispatchQueue.main.async {
-//                    self.refreshControl.endRefreshing()
+                    self.refreshControl.endRefreshing()
                 }
 
             }
