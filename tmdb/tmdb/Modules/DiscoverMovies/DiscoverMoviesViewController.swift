@@ -66,17 +66,22 @@ class DiscoverMoviesViewController: BaseViewController {
         _viewModel.state.bind { (viewModelState) in
             switch viewModelState {
             case .new(genreList: let list):
-                self.stackViewContainer.addArrangedSubview(list.viewController.view)
-                Cartography.constrain(list.viewController.view, self.view) { (listView, container) in
-                    listView.height == 220 //container size for movies
+                DispatchQueue.main.async {
+                    self.stackViewContainer.addArrangedSubview(list.viewController.view)
+                    Cartography.constrain(list.viewController.view, self.view) { (listView, container) in
+                        listView.height == 220 //container size for movies
+                    }
+                    self.refreshControl.endRefreshing()
                 }
-                self.refreshControl.endRefreshing()
             case .loading:
                 DispatchQueue.main.async {
                     self.refreshControl.beginRefreshing()
                 }
-            case .error(error: let error):
-                print("VIEW MODEL ERROR \(error)")
+            case .error(error: _ ):
+                DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
+                }
+
             }
         }.disposed(by: _disposeBag)
 
