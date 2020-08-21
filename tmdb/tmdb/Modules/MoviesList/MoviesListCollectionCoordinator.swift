@@ -33,7 +33,7 @@ class MoviesListCollectionCoordinator: BaseCoordinator, MoviesListCollectionCoor
         _viewModel = MoviesListCollectionViewModel.init(coordinator: self,
                                                         genre: genre,
                                                         onMovieSelection: onMovieSelection,
-                                                        discoverRepository: DiscoverMoviesRepository(api: AFRequest()))
+                                                        discoverRepository: DiscoverMoviesRepository())
         _viewController = MoviesListCollectionViewController(viewModel: _viewModel)
     }
 

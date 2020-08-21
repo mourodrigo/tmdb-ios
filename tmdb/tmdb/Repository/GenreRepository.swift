@@ -46,7 +46,7 @@ class GenreRepository: GenreRepositoryProtocol {
     // MARK: - Life Cycle
     //*************************************************
 
-    init(api: APIRequest) {
+    init(api: APIRequest = AFRequest()) {
         _api = api
     }
 

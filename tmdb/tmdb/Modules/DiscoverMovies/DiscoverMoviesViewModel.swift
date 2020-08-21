@@ -62,7 +62,7 @@ class DiscoverMoviesViewModel: BaseViewModel, DiscoverMoviesViewModelProtocol {
             case .loading:
                 self?._state.onNext(.loading)
 
-            case .error(error: let _):
+            case .error(error: _):
                 print("error loading") //todo SHOW ERROR
             }
         }.disposed(by: _disposeBag)

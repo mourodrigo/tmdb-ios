@@ -43,8 +43,7 @@ class Coordinator: BaseCoordinator, CoordinatorProtocol {
                     SharedLocator.shared.configurationRepository.fetch()
                 }
             }
-        }.addDisposableTo(_disposeBag)
-
+        }.disposed(by: _disposeBag)
 
     }
 
