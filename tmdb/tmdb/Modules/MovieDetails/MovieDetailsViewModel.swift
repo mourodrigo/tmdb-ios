@@ -16,8 +16,10 @@ protocol MovieDetailsViewModelProtocol: BaseViewModelProtocol {
     var watchNowURL: Driver<URL?> { get }
     var homePageURL: Driver<URL?> { get }
     var taglineText: Driver<String?> { get }
+    var videoThumbs: Driver<[UIImage]> { get }
     func didTapHomePageButton()
     func didTapWatchButton()
+    func didTapVideoThumb(at index: Int)
 }
 
 class MovieDetailsViewModel: BaseViewModel, MovieDetailsViewModelProtocol {
@@ -27,6 +29,7 @@ class MovieDetailsViewModel: BaseViewModel, MovieDetailsViewModelProtocol {
     //************************************************
     private let _api: APIRequest
     private let _detailsRepository: MovieDetailsRepository?
+    private let _videoRepository: VideoRepository?
     private weak var _coordinator: MovieDetailsCoordinatorProtocol?
     private let _disposeBag = DisposeBag()
 
@@ -37,6 +40,8 @@ class MovieDetailsViewModel: BaseViewModel, MovieDetailsViewModelProtocol {
     private let _watchNowURL = BehaviorSubject<URL?>(value: nil)
     private let _homePageURL =  BehaviorSubject<URL?>(value: nil)
     private let _taglineText =  BehaviorSubject<String?>(value: nil)
+    private let _videos =  BehaviorSubject<[Video]>(value: [Video]())
+    private let _videosThumbs =  BehaviorSubject<[UIImage]>(value: [UIImage]())
 
     //************************************************
     // MARK: - Public Properties
@@ -76,6 +81,10 @@ class MovieDetailsViewModel: BaseViewModel, MovieDetailsViewModelProtocol {
         return _taglineText.asDriver(onErrorJustReturn: nil)
     }
 
+    var videoThumbs: Driver<[UIImage]> {
+        return _videosThumbs.asDriver(onErrorJustReturn: [UIImage]())
+    }
+
     var releaseDate: String? {
         //reformatting date
         //todo move to Movie data encoding
@@ -106,6 +115,7 @@ class MovieDetailsViewModel: BaseViewModel, MovieDetailsViewModelProtocol {
         _genre = genre
         _coordinator = coordinator
         _detailsRepository = MovieDetailsRepository(movie: movie, api: api)
+        _videoRepository = VideoRepository(movie: movie, api: api)
         super.init()
         setup()
     }
@@ -116,10 +126,11 @@ class MovieDetailsViewModel: BaseViewModel, MovieDetailsViewModelProtocol {
 
     private func setup() {
         loadImage()
-        bindDetails()
+        fetchDetails()
+        fetchVideos()
     }
 
-    private func bindDetails() {
+    private func fetchDetails() {
         _detailsRepository?.state.bind(onNext: { [weak self] (status) in
             switch status {
             case .success(let details):
@@ -131,6 +142,48 @@ class MovieDetailsViewModel: BaseViewModel, MovieDetailsViewModelProtocol {
                 print("Error on \(String.init(describing: self)) while fetching _detailsRepository \n \(error.localizedDescription)")
             }
         }).disposed(by: _disposeBag)
+    }
+
+    private func fetchVideos() {
+        _videoRepository?.state.bind(onNext: { [weak self] (status) in
+            switch status {
+            case .success(let content):
+                self?.handleFetchedVideos(for: content.results)
+
+            case .loading: break //do nothing for now
+            case .error(error: let error):
+                print("Error on \(String.init(describing: self)) while fetching _videoRepository \n \(error.localizedDescription)")
+            }
+        }).disposed(by: _disposeBag)
+    }
+
+    private func handleFetchedVideos(for videos: [Video]) {
+
+        DispatchQueue.global().async {
+            let imageRepo = SharedLocator.shared.imageRepository
+
+            var videosHavingThumb = [Video]()
+            var videoThumbs = [UIImage]()
+
+            for video in videos {
+                let semaphore = DispatchSemaphore(value: 0)
+                if let url = video.thumbURL {
+                    imageRepo.getImage(for: url,
+                                       onSuccess: { (image, _) in
+                                        videosHavingThumb.append(video)
+                                        videoThumbs.append(image)
+                                        semaphore.signal()
+                    }) { (_ ) in
+                        semaphore.signal()
+                    }
+                    semaphore.wait()
+                }
+            }
+
+            self._videos.onNext(videosHavingThumb)
+            self._videosThumbs.onNext(videoThumbs)
+        }
+
     }
 
     private func setupWatchButton(value: String?) {
@@ -177,6 +230,13 @@ class MovieDetailsViewModel: BaseViewModel, MovieDetailsViewModelProtocol {
 
     func didTapWatchButton() {
         if let url = try? _watchNowURL.value() {
+            UIApplication.shared.open(url)
+        }
+    }
+
+    func didTapVideoThumb(at index: Int) {
+        if  let video = try? _videos.value()[index],
+            let url = video.videoURL {
             UIApplication.shared.open(url)
         }
     }
