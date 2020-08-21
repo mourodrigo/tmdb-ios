@@ -11,6 +11,7 @@ class TMDB {
         case configuration
         case genres
         case discoverMovies(genreId: Int)
+        case movieDetails(movieId: Int)
 
         private var stringValue: String {
             var value = endpoint
@@ -20,6 +21,8 @@ class TMDB {
                 value = value.appending("configuration?")
             case .genres:
                 value = value.appending("genre/movie/list?")
+            case .movieDetails(let movieId):
+                value = value.appending("movie/\(movieId)?")
             case .discoverMovies(let genreId):
                 value = value.appending("discover/movie?")
                 value = value.appending("with_genres=\(genreId)")

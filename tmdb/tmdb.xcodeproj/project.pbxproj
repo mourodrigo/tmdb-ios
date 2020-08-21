@@ -29,6 +29,8 @@
 		301346DD24EEE8E30010C89B /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301346DC24EEE8E30010C89B /* MovieDetails.swift */; };
 		301346DF24EEEF6A0010C89B /* ProductionCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301346DE24EEEF6A0010C89B /* ProductionCountry.swift */; };
 		301346E124EEF3EE0010C89B /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301346E024EEF3EE0010C89B /* Video.swift */; };
+		301346E324EEF4B00010C89B /* MovieDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301346E224EEF4B00010C89B /* MovieDetailsRepository.swift */; };
+		301346E524EF087D0010C89B /* TwoWayBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301346E424EF087D0010C89B /* TwoWayBinding.swift */; };
 		301B362124E43048007C2411 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301B362024E43048007C2411 /* AppDelegate.swift */; };
 		301B362A24E43049007C2411 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 301B362924E43049007C2411 /* Assets.xcassets */; };
 		301B362D24E43049007C2411 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301B362B24E43049007C2411 /* LaunchScreen.storyboard */; };
@@ -109,6 +111,8 @@
 		301346DC24EEE8E30010C89B /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		301346DE24EEEF6A0010C89B /* ProductionCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionCountry.swift; sourceTree = "<group>"; };
 		301346E024EEF3EE0010C89B /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		301346E224EEF4B00010C89B /* MovieDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRepository.swift; sourceTree = "<group>"; };
+		301346E424EF087D0010C89B /* TwoWayBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoWayBinding.swift; sourceTree = "<group>"; };
 		301B361D24E43048007C2411 /* tmdb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tmdb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		301B362024E43048007C2411 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		301B362924E43049007C2411 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 			children = (
 				3011B72924E57A5000595869 /* GenreRepository.swift */,
 				3011B72B24E57FD100595869 /* ConfigurationRepository.swift */,
+				301346E224EEF4B00010C89B /* MovieDetailsRepository.swift */,
 				3011B72D24E5808C00595869 /* DiscoverMoviesRepository.swift */,
 				30317DED24E6D53300B496D3 /* ImageRepository.swift */,
 			);
@@ -367,6 +372,7 @@
 				301B366924E43BD9007C2411 /* Extensions */,
 				301B366324E43728007C2411 /* CustomTypes.swift */,
 				30E3981A24E476D000AD6770 /* CustomError.swift */,
+				301346E424EF087D0010C89B /* TwoWayBinding.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -719,11 +725,13 @@
 				3011B72724E5711F00595869 /* MOCKED_APIResponses.swift in Sources */,
 				3011B73624E586A300595869 /* LoadingView.swift in Sources */,
 				30317DF524E6F69D00B496D3 /* MovieDetailsViewModel.swift in Sources */,
+				301346E324EEF4B00010C89B /* MovieDetailsRepository.swift in Sources */,
 				301B366B24E43BE1007C2411 /* UIViewController+Rx.swift in Sources */,
 				30317DF724E6F6AE00B496D3 /* MovieDetailsCoordinator.swift in Sources */,
 				3011B71A24E48B2100595869 /* Configuration.swift in Sources */,
 				301B366424E43728007C2411 /* CustomTypes.swift in Sources */,
 				301B367424E43D6E007C2411 /* ViewModel.swift in Sources */,
+				301346E524EF087D0010C89B /* TwoWayBinding.swift in Sources */,
 				3011B72A24E57A5000595869 /* GenreRepository.swift in Sources */,
 				30E3981924E468D500AD6770 /* TMDB.swift in Sources */,
 				301B366724E438B2007C2411 /* SharedLocator.swift in Sources */,
