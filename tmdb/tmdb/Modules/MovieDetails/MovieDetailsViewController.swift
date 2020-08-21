@@ -18,6 +18,10 @@ class MovieDetailsViewController: BaseViewController {
     @IBOutlet weak var popularityLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var taglineLabel: UILabel!
+    @IBOutlet weak var watchNowButton: UIButton!
+    @IBOutlet weak var videosContainer: UIStackView!
+    @IBOutlet weak var homePageButton: UIButton!
 
     //************************************************
     // MARK: - Private Properties
@@ -61,6 +65,26 @@ class MovieDetailsViewController: BaseViewController {
             self?.imageView.image = image
         }.disposed(by: _disposeBag)
 
+        _viewModel.taglineText.drive(onNext: { [weak self] (value) in
+            self?.taglineLabel.text = value
+        }).disposed(by: _disposeBag)
+
+        _viewModel.watchNowURL.drive(onNext: { [weak self] (value) in
+            self?.watchNowButton.isHidden = value == nil
+        }).disposed(by: _disposeBag)
+
+        watchNowButton.rx.tap.bind { [weak self] (_ ) in
+            self?._viewModel.didTapWatchButton  ()
+        }.disposed(by: _disposeBag)
+
+        _viewModel.homePageURL.drive(onNext: { [weak self] (value) in
+            self?.homePageButton.isHidden = value == nil
+        }).disposed(by: _disposeBag)
+
+        homePageButton.rx.tap.bind { [weak self] (_ ) in
+            self?._viewModel.didTapHomePageButton()
+        }.disposed(by: _disposeBag)
+
         setRatingStars()
 
     }
@@ -68,8 +92,8 @@ class MovieDetailsViewController: BaseViewController {
     //saving time by using emojis... sorry for it
     private func setRatingStars() {
         var ratingText = ""
-        for _ in 0..._viewModel.rating {
-            ratingText = ratingText.appending("⭐️")
+        for index in 1...10 {
+            ratingText = ratingText.appending(index > _viewModel.rating ? "☆" : "★")
         }
         ratingStars.text = ratingText
     }
