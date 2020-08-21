@@ -8,7 +8,7 @@ struct VideoResponse: Codable {
 }
 
 enum VideoSiteOrigin: String, Codable {
-    case youtube = "Youtube"
+    case youtube = "YouTube"
     case vimeo = "Vimeo"
 }
 
