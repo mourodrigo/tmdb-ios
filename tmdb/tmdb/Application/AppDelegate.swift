@@ -39,7 +39,7 @@ extension AppDelegate {
 
         //storing some repositories
         SharedLocator.shared.register(ConfigurationRepositoryProtocol.self,
-                                      instance: ConfigurationRepository(api: AFRequest()))
+                                      instance: ConfigurationRepository())
 
         SharedLocator.shared.register(ImageRepository.self, instance: AFImageRepository())
 

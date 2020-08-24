@@ -27,9 +27,9 @@ class MovieDetailsCoordinator: BaseCoordinator, MovieDetailsCoordinatorProtocol 
     // MARK: - Lifecycle
     //************************************************
 
-    init(movie: Movie, genre: Genre, api: APIRequest) {
+    init(movie: Movie, genre: Genre) {
         super.init()
-        _viewModel = MovieDetailsViewModel(coordinator: self, movie: movie, genre: genre, api: api)
+        _viewModel = MovieDetailsViewModel(coordinator: self, movie: movie, genre: genre)
         _viewController = MovieDetailsViewController(viewModel: _viewModel)
     }
 
