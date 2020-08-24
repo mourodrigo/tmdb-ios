@@ -4,13 +4,17 @@
 
 import UIKit
 import RxSwift
+import RxGesture
+
 import RxCocoa
+import Cartography
 
 class MovieDetailsViewController: BaseViewController {
     //************************************************
     // MARK: - @IBOutlets
     //************************************************
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
@@ -18,6 +22,10 @@ class MovieDetailsViewController: BaseViewController {
     @IBOutlet weak var popularityLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var taglineLabel: UILabel!
+    @IBOutlet weak var watchNowButton: UIButton!
+    @IBOutlet weak var videosContainer: UIStackView!
+    @IBOutlet weak var homePageButton: UIButton!
 
     //************************************************
     // MARK: - Private Properties
@@ -61,17 +69,68 @@ class MovieDetailsViewController: BaseViewController {
             self?.imageView.image = image
         }.disposed(by: _disposeBag)
 
+        _viewModel.taglineText.drive(onNext: { [weak self] (value) in
+            self?.taglineLabel.text = value
+        }).disposed(by: _disposeBag)
+
+        _viewModel.watchNowURL.drive(onNext: { [weak self] (value) in
+            self?.watchNowButton.isHidden = value == nil
+        }).disposed(by: _disposeBag)
+
+        watchNowButton.rx.tap.bind { [weak self] (_ ) in
+            self?._viewModel.didTapWatchButton  ()
+        }.disposed(by: _disposeBag)
+
+        _viewModel.homePageURL.drive(onNext: { [weak self] (value) in
+            self?.homePageButton.isHidden = value == nil
+        }).disposed(by: _disposeBag)
+
+        homePageButton.rx.tap.bind { [weak self] (_ ) in
+            self?._viewModel.didTapHomePageButton()
+        }.disposed(by: _disposeBag)
+
+        _viewModel.videoThumbs.drive(onNext: setVideoThumbs(with:))
+            .disposed(by: _disposeBag)
+
         setRatingStars()
 
     }
 
-    //saving time by using emojis... sorry for it
     private func setRatingStars() {
+        //saving time by using emojis... (laughs)
         var ratingText = ""
-        for _ in 0..._viewModel.rating {
-            ratingText = ratingText.appending("⭐️")
+        for index in 1...10 {
+            ratingText = ratingText.appending(index > _viewModel.rating ? "☆" : "★")
         }
         ratingStars.text = ratingText
+    }
+
+    private func setVideoThumbs(with images: [UIImage]) {
+
+        for subView in self.videosContainer.arrangedSubviews {
+            self.videosContainer.removeArrangedSubview(subView)
+        }
+
+        for (index, thumb) in images.enumerated() {
+
+            let thumbViewContainer = VideoThumbView()
+            thumbViewContainer.imageView.image = thumb
+
+            self.videosContainer.addArrangedSubview(thumbViewContainer)
+
+            Cartography.constrain(thumbViewContainer.view, self.overviewLabel) {
+                (imageContainer, label) in
+                imageContainer.height == 190 //container video thumb size
+                imageContainer.width == label.width
+            }
+
+            thumbViewContainer.view.rx.tapGesture().when(.recognized)
+            .subscribe(onNext: { _ in
+                self._viewModel.didTapVideoThumb(at: index)
+            })
+            .disposed(by: self._disposeBag)
+        }
+
     }
 
 }

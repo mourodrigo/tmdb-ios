@@ -27,4 +27,4 @@ This project is a TMDB sample app
 
 ##### Details screen
 
-[![N|Solid =250x](https://i.ibb.co/0VF9Jz3/Simulator-Screen-Shot-i-Phone-11-2020-08-17-at-17-45-31.png )]
+[![N|Solid =250x](https://i.ibb.co/qR63wTw/Simulator-Screen-Shot-i-Phone-11-2020-08-24-at-11-05-21.png)]

@@ -38,7 +38,7 @@ class DiscoverMoviesCoordinator: BaseCoordinator, DiscoverMoviesCoordinatorProto
     }
 
     func pushDetails(movie: Movie, genre: Genre) {
-        let details = MovieDetailsCoordinator(movie: movie, genre: genre, api: AFRequest())
+        let details = MovieDetailsCoordinator(movie: movie, genre: genre)
         self.push(details)
     }
 
